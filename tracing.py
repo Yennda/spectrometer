@@ -59,8 +59,8 @@ class Tools:
                 [m.sin(angles[2]), m.cos(angles[2]), 0],
                 [0, 0, 1]
             ])
-        print(Rz * Ry * Rx * vec)
-        return vec * (Rz * Ry * Rx).T
+        print(vec * (Rz * Ry * Rx).T)
+        return np.array(vec * (Rz * Ry * Rx).T)
 
 
 class Detector:
