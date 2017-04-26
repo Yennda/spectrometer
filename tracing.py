@@ -35,7 +35,7 @@ class Tools:
         return vec / norm
 
     @staticmethod
-    def rotate(vec, angles, u='rad'):
+    def rotate(vec: np.matrix, angles, u='rad'):
         if u == 'r':
             angles = angles * m.pi
         elif u == 'd':
@@ -50,7 +50,7 @@ class Tools:
         Ry = np.matrix(
             [
                 [m.cos(angles[1]), 0, m.sin(angles[1])],
-                [1, 0, 0],
+                [0, 1, 0],
                 [-m.sin(angles[1]), 0, m.cos(angles[1])]
             ])
         Rz = np.matrix(
@@ -59,41 +59,61 @@ class Tools:
                 [m.sin(angles[2]), m.cos(angles[2]), 0],
                 [0, 0, 1]
             ])
-        print(vec * (Rz * Ry * Rx).T)
-        return np.array(vec * (Rz * Ry * Rx).T)
+        # print(Rx * Ry * Rz * vec.T)
+        return (Rx * Ry * Rz * vec.T).T
+
+        # @staticmethod
+        # def iter_detector(detector: Detector, function):
+        #     for i in range(-detector.nx // 2, detector.nx // 2 + 1):
+        #         for j in range(-detector.ny // 2, detector.ny // 2 + 1):
+        #             function
 
 
 class Detector:
-    def __init__(self, dim: list, loc: list, resolution, ):
+    def __init__(self, dim: list, loc: list, res):
         """
-        :param dimensions [cm]: 
+        :param dim [cm]: 
         :param loc: 
-        :param resolution: [micrometres]
+        :param res: [micrometres]
         """
         self.dim = dim
         self.loc = loc
-        self.res = resolution / 1e4  # to centimeters
-        self.points
-        self.n = None
-        self.mesh = None
+        self.res = res / 1e4  # to centimeters
+        self.nx = int(self.dim[0] / self.res)
+        self.ny = int(self.dim[1] / self.res)
+
+        self.n, self.mesh = self.generate_mesh()
+        self.generate_mesh()
 
     def generate_mesh(self):
-        if self.n is None:
-            raise ValueError
-
-        nx = int(self.dim[0] / self.res)
-        ny = int(self.dim[1] / self.res)
+        n = np.matrix([0, 0, 1])
 
         # generating mesh
-        self.mesh = np.ndarray([nx, ny])
-        for i in range(-nx // 2, nx // 2 + 1):
-            for j in range(-ny // 2, ny // 2 + 1):
-                self.mesh[i, j] = DetectorPoint(
-                    self.res * np.array([i, j, 0]),
-                )
+        yrow = [i for i in range(self.ny)]
+        mesh = [yrow for i in range(self.nx)]
 
-    def rotate(self):
-        pass
+        mesh=list()
+        for i in range(-self.nx // 2, self.nx // 2 + 1):
+            for j in range(-self.ny // 2, self.ny // 2 + 1):
+                mesh[i][j] = DetectorPoint(
+                    self.res * np.matrix([i, j , 0])
+                )
+        return n, mesh
+
+    def translate(self, vector: np.matrix):
+        print(vector)
+        for i in range(-self.nx // 2, self.nx // 2 + 1):
+            for j in range(-self.ny // 2, self.ny // 2 + 1):
+                if i == 1 and j == 0:
+                    print(self.mesh[i][j].loc)
+                self.mesh[i][j].loc += vector
+
+    def rotate(self, angles, u='rad'):
+        self.n = Tools.rotate(self.n, angles, u)
+
+        for i in range(-self.nx // 2, self.nx // 2 + 1):
+            for j in range(-self.ny // 2, self.ny // 2 + 1):
+                self.mesh[i][j].loc = Tools.rotate(self.mesh[i][j].loc, angles, u)
 
 
 class DetectorPoint:
@@ -102,13 +122,14 @@ class DetectorPoint:
 
 
 class Source:
-    def __init__(self, loc: list, wavelength):
-        self.loc = np.array(loc)
+    def __init__(self, loc: list, wavelength, intensity=1):
+        self.loc = np.matrix(loc)
         self.wl = wavelength
+        self.intensity = intensity
 
 
 class CrystalPoint:
-    def __init__(self, loc: np.array, n: np.array):
+    def __init__(self, loc: np.matrix, n: np.matrix):
         """
         :param loc: coordinates [cm]
         :param n: normal vector
@@ -166,7 +187,7 @@ class Crystal:
                 x = random.random()
                 y = random.random()
 
-            loc = np.array([
+            loc = np.matrix([
                 x * self.D - self.D / 2,
                 y * self.D - self.D / 2,
                 (self.R ** 2 -
@@ -174,7 +195,7 @@ class Crystal:
                  (y * self.D - self.D / 2) ** 2) ** 0.5
             ]
             )
-            points.append(CrystalPoint(loc, -loc / self.R))
+            points.append(CrystalPoint(loc=loc, n=-loc / self.R))
 
         return points
 
@@ -184,23 +205,27 @@ class SetUp:
         self.source = source
         self.crystal = crystal
         self.detector = detector
+        self.detector.rotate()
 
     def compute_reflected(self):
         bragg = self.crystal.bragg_angle(self.source.wl, 2)
         print(Tools.deg_from_rad(bragg))
+        print(bragg)
+
         tf = list()
         for p in self.crystal.points:
+            # unit vector s, distance r, output intensity io
+            # necessary to implement reflectivitz of the crystal
             s = Tools.normalize(p.loc - self.source.loc)
-            # s = s / np.linalg.norm(s)
+            r = np.linalg.norm(p.loc - self.source.loc)
+            io = self.source.intensity / r ** 2
 
-            # print(Tools.deg_from_rad(m.pi / 2 - m.acos(s.dot(-p.n))))
+            tf.append(Tools.mol((m.pi / 2 - m.acos((s * (-p.n).T)[0, 0])), bragg, 0.02))
 
-            tf.append(Tools.mol((m.pi / 2 - m.acos(s.dot(-p.n))), bragg, 0.02))
+            if Tools.mol((m.pi / 2 - m.acos((s * (-p.n).T)[0, 0])), bragg, 0.04):
+                p.out.append((2 * (p.n + s) - s) * io)
 
-            if Tools.mol((m.pi / 2 - m.acos(s.dot(-p.n))), bragg, 0.04):
-                p.out.append(2 * (p.n + s) - s)
-
-        print('{}/{}'.format(tf.count(True), self.crystal.n))
+                # print('{}/{}'.format(tf.count(True), self.crystal.n))
 
     def compute_image(self):
         self.detector.n = Tools.normalize(
