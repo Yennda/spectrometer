@@ -1,9 +1,13 @@
 import os
 import math as m
 import numpy as np
+import numpy.linalg as l
 import random
-import scipy as sc
-from copy import copy
+
+from skimage import img_as_ubyte
+from scipy import misc
+
+from scipy import ndimage
 
 """
 All the positions and dimensions are in centimetres. Except for the wavelengths and lattice constants, that are in Angstroems.
@@ -28,8 +32,14 @@ class Tools:
         return ((y - e) < x) and (x < (y + e))
 
     @staticmethod
+    def mols(x: np.matrix, y: np.matrix, e: float):
+        norm = l.norm(x - y)
+
+        return norm < e
+
+    @staticmethod
     def normalize(vec):
-        norm = np.linalg.norm(vec)
+        norm = l.norm(vec)
         if norm == 0:
             raise ValueError
         return vec / norm
@@ -77,35 +87,30 @@ class Detector:
         :param res: [micrometres]
         """
         self.dim = dim
-        self.loc = loc
+        self.loc = np.matrix(loc)
         self.res = res / 1e4  # to centimeters
         self.nx = int(self.dim[0] / self.res)
         self.ny = int(self.dim[1] / self.res)
 
         self.n, self.mesh = self.generate_mesh()
-        self.generate_mesh()
+        self.translate(self.loc)
 
     def generate_mesh(self):
         n = np.matrix([0, 0, 1])
 
         # generating mesh
-        yrow = [i for i in range(self.ny)]
-        mesh = [yrow for i in range(self.nx)]
+        mesh = [[i for i in range(self.ny)] for i in range(self.nx)]
 
-        mesh=list()
-        for i in range(-self.nx // 2, self.nx // 2 + 1):
-            for j in range(-self.ny // 2, self.ny // 2 + 1):
+        for i in range(self.nx):
+            for j in range(self.ny):
                 mesh[i][j] = DetectorPoint(
-                    self.res * np.matrix([i, j , 0])
+                    self.res * np.matrix([(i - self.nx) / 2, (j - self.ny) / 2, 0])
                 )
         return n, mesh
 
     def translate(self, vector: np.matrix):
-        print(vector)
-        for i in range(-self.nx // 2, self.nx // 2 + 1):
-            for j in range(-self.ny // 2, self.ny // 2 + 1):
-                if i == 1 and j == 0:
-                    print(self.mesh[i][j].loc)
+        for i in range(self.nx):
+            for j in range(self.ny):
                 self.mesh[i][j].loc += vector
 
     def rotate(self, angles, u='rad'):
@@ -119,6 +124,7 @@ class Detector:
 class DetectorPoint:
     def __init__(self, loc):
         self.loc = loc
+        self.intensity = 0
 
 
 class Source:
@@ -205,19 +211,18 @@ class SetUp:
         self.source = source
         self.crystal = crystal
         self.detector = detector
-        self.detector.rotate()
 
     def compute_reflected(self):
         bragg = self.crystal.bragg_angle(self.source.wl, 2)
-        print(Tools.deg_from_rad(bragg))
-        print(bragg)
+        # print(Tools.deg_from_rad(bragg))
+        # print(bragg)
 
         tf = list()
         for p in self.crystal.points:
-            # unit vector s, distance r, output intensity io
+            # unit 'wavevector' s, distance r, output intensity io
             # necessary to implement reflectivitz of the crystal
             s = Tools.normalize(p.loc - self.source.loc)
-            r = np.linalg.norm(p.loc - self.source.loc)
+            r = l.norm(p.loc - self.source.loc)
             io = self.source.intensity / r ** 2
 
             tf.append(Tools.mol((m.pi / 2 - m.acos((s * (-p.n).T)[0, 0])), bragg, 0.02))
@@ -227,7 +232,38 @@ class SetUp:
 
                 # print('{}/{}'.format(tf.count(True), self.crystal.n))
 
-    def compute_image(self):
-        self.detector.n = Tools.normalize(
-            np.array([0, 0, self.crystal.R]) - self.loc
-        )
+    def intensity_for_detector(self):
+        for i in range(self.detector.nx):
+            for j in range(self.detector.ny):
+                self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
+
+    def intensity_for_point(self, det_point: DetectorPoint):
+        intensity = 0
+        for p in self.crystal.points:
+            for o in p.out:
+                if Tools.mols(Tools.normalize(o), Tools.normalize(det_point.loc - p.loc), e=0.1):
+                    intensity += l.norm(o)
+                    # print('zasah!!!')
+        return intensity
+
+    def graph(self):
+        f = open('name.txt', 'r+')
+        number = int(f.read())
+        f.close()
+
+        image = np.ndarray([self.detector.nx, self.detector.ny])
+        max = list()
+        for i in self.detector.mesh:
+            for j in i:
+                max.append(j.intensity)
+        max.sort()
+        print(max[-1])
+
+        for i in range(self.detector.nx):
+            for j in range(self.detector.ny):
+                image[i, j] = self.detector.mesh[i][j].intensity / max[-1] * 255
+        print(image)
+        misc.imsave('images/detector{:03d}.png'.format(number), image)
+        f=open('name.txt','w')
+        f.write(str(number+1))
+        f.close()
