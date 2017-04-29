@@ -1,82 +1,15 @@
-import os
 import math as m
 import numpy as np
-import numpy.linalg as l
 import random
+import time
 
-from skimage import img_as_ubyte
 from scipy import misc
-
-from scipy import ndimage
+from algebra import la
+from tools import Tools
 
 """
 All the positions and dimensions are in centimetres. Except for the wavelengths and lattice constants, that are in Angstroems.
 """
-
-
-class Tools:
-    @staticmethod
-    def mm_from_ang(x):
-        return x * 1e-12
-
-    @staticmethod
-    def deg_from_rad(x):
-        return x / (2 * m.pi) * 360
-
-    @staticmethod
-    def rad_from_deg(x):
-        return x / 180 * m.pi
-
-    @staticmethod
-    def mol(x, y, e):
-        return ((y - e) < x) and (x < (y + e))
-
-    @staticmethod
-    def mols(x: np.matrix, y: np.matrix, e: float):
-        norm = l.norm(x - y)
-
-        return norm < e
-
-    @staticmethod
-    def normalize(vec):
-        norm = l.norm(vec)
-        if norm == 0:
-            raise ValueError
-        return vec / norm
-
-    @staticmethod
-    def rotate(vec: np.matrix, angles, u='rad'):
-        if u == 'r':
-            angles = angles * m.pi
-        elif u == 'd':
-            angles = [Tools.rad_from_deg(a) for a in angles]
-
-        Rx = np.matrix(
-            [
-                [1, 0, 0],
-                [0, m.cos(angles[0]), -m.sin(angles[0])],
-                [0, m.sin(angles[0]), m.cos(angles[0])]
-            ])
-        Ry = np.matrix(
-            [
-                [m.cos(angles[1]), 0, m.sin(angles[1])],
-                [0, 1, 0],
-                [-m.sin(angles[1]), 0, m.cos(angles[1])]
-            ])
-        Rz = np.matrix(
-            [
-                [m.cos(angles[2]), -m.sin(angles[2]), 0],
-                [m.sin(angles[2]), m.cos(angles[2]), 0],
-                [0, 0, 1]
-            ])
-        # print(Rx * Ry * Rz * vec.T)
-        return (Rx * Ry * Rz * vec.T).T
-
-        # @staticmethod
-        # def iter_detector(detector: Detector, function):
-        #     for i in range(-detector.nx // 2, detector.nx // 2 + 1):
-        #         for j in range(-detector.ny // 2, detector.ny // 2 + 1):
-        #             function
 
 
 class Detector:
@@ -87,7 +20,7 @@ class Detector:
         :param res: [micrometres]
         """
         self.dim = dim
-        self.loc = np.matrix(loc)
+        self.loc = loc
         self.res = res / 1e4  # to centimeters
         self.nx = int(self.dim[0] / self.res)
         self.ny = int(self.dim[1] / self.res)
@@ -104,14 +37,14 @@ class Detector:
         for i in range(self.nx):
             for j in range(self.ny):
                 mesh[i][j] = DetectorPoint(
-                    self.res * np.matrix([(i - self.nx) / 2, (j - self.ny) / 2, 0])
+                    la.x([i - self.nx / 2, j - self.ny / 2, 0], self.res)
                 )
         return n, mesh
 
-    def translate(self, vector: np.matrix):
+    def translate(self, vector: list):
         for i in range(self.nx):
             for j in range(self.ny):
-                self.mesh[i][j].loc += vector
+                self.mesh[i][j].loc = la.plus(self.mesh[i][j].loc, vector)
 
     def rotate(self, angles, u='rad'):
         self.n = Tools.rotate(self.n, angles, u)
@@ -129,13 +62,13 @@ class DetectorPoint:
 
 class Source:
     def __init__(self, loc: list, wavelength, intensity=1):
-        self.loc = np.matrix(loc)
+        self.loc = np.array(loc)
         self.wl = wavelength
         self.intensity = intensity
 
 
 class CrystalPoint:
-    def __init__(self, loc: np.matrix, n: np.matrix):
+    def __init__(self, loc: np.array, n: np.array):
         """
         :param loc: coordinates [cm]
         :param n: normal vector
@@ -168,7 +101,7 @@ class Crystal:
         x = self.R * m.sin(phi) * m.sin(theta)
         y = self.R * m.cos(phi) * m.sin(theta)
         z = self.R * m.cos(theta)
-        return np.array([x, y, z])
+        return [x, y, z]
 
     def generate_points(self):
         points = list()
@@ -193,15 +126,15 @@ class Crystal:
                 x = random.random()
                 y = random.random()
 
-            loc = np.matrix([
+            loc = [
                 x * self.D - self.D / 2,
                 y * self.D - self.D / 2,
                 (self.R ** 2 -
                  (x * self.D - self.D / 2) ** 2 -
                  (y * self.D - self.D / 2) ** 2) ** 0.5
             ]
-            )
-            points.append(CrystalPoint(loc=loc, n=-loc / self.R))
+
+            points.append(CrystalPoint(loc=loc, n=la.x(loc, (-1 / self.R))))
 
         return points
 
@@ -214,23 +147,17 @@ class SetUp:
 
     def compute_reflected(self):
         bragg = self.crystal.bragg_angle(self.source.wl, 2)
-        # print(Tools.deg_from_rad(bragg))
-        # print(bragg)
 
         tf = list()
         for p in self.crystal.points:
             # unit 'wavevector' s, distance r, output intensity io
-            # necessary to implement reflectivitz of the crystal
-            s = Tools.normalize(p.loc - self.source.loc)
-            r = l.norm(p.loc - self.source.loc)
+            # necessary to implement reflectivity of the crystal
+            s = la.normalize(la.minus(p.loc, self.source.loc))
+            r = la.norm(la.plus(p.loc, self.source.loc))
             io = self.source.intensity / r ** 2
 
-            tf.append(Tools.mol((m.pi / 2 - m.acos((s * (-p.n).T)[0, 0])), bragg, 0.02))
-
-            if Tools.mol((m.pi / 2 - m.acos((s * (-p.n).T)[0, 0])), bragg, 0.04):
-                p.out.append((2 * (p.n + s) - s) * io)
-
-                # print('{}/{}'.format(tf.count(True), self.crystal.n))
+            if Tools.mol(m.pi / 2 - m.acos(la.dot(s, la.i(p.n))), bragg, 0.005):
+                p.out.append(la.x((la.minus(la.plus(p.n, s), s)), 2 * io))
 
     def intensity_for_detector(self):
         for i in range(self.detector.nx):
@@ -241,29 +168,50 @@ class SetUp:
         intensity = 0
         for p in self.crystal.points:
             for o in p.out:
-                if Tools.mols(Tools.normalize(o), Tools.normalize(det_point.loc - p.loc), e=0.1):
-                    intensity += l.norm(o)
+                if Tools.mols(la.normalize(o), la.normalize(la.minus(det_point.loc, p.loc)), e=0.05):
+                    intensity += la.norm(o)
                     # print('zasah!!!')
         return intensity
 
     def graph(self):
-        f = open('name.txt', 'r+')
-        number = int(f.read())
-        f.close()
+        # f = open('name.txt', 'r+')
+        # number = int(f.read())
+        # f.close()
 
         image = np.ndarray([self.detector.nx, self.detector.ny])
-        max = list()
+        maximum = list()
         for i in self.detector.mesh:
             for j in i:
-                max.append(j.intensity)
-        max.sort()
-        print(max[-1])
+                maximum.append(j.intensity)
+        maximum.sort()
+        print(maximum[-1])
 
         for i in range(self.detector.nx):
             for j in range(self.detector.ny):
-                image[i, j] = self.detector.mesh[i][j].intensity / max[-1] * 255
-        print(image)
-        misc.imsave('images/detector{:03d}.png'.format(number), image)
-        f=open('name.txt','w')
-        f.write(str(number+1))
-        f.close()
+                if maximum[-1] != 0:
+                    image[i, j] = self.detector.mesh[i][j].intensity / maximum[-1] * 255
+                else:
+                    image[i, j] = self.detector.mesh[i][j].intensity
+        number = time.gmtime()
+        misc.imsave(
+            'images/detector{:02d}{:02d}{:02d}{:02d}{:02d}.png'.format(number.tm_mon, number.tm_mday, number.tm_hour,
+                                                                       number.tm_min, number.tm_sec), image)
+
+        # misc.imsave('images/detector{:03d}.png'.format(number), image)
+        # f = open('name.txt', 'w')
+        # f.write(str(number + 1))
+        # f.close()
+
+    def do(self):
+        t = time.time()
+        print('reflection...')
+        self.compute_reflected()
+        print('\t done: {}'.format(time.time() - t))
+        print('detector...')
+        self.intensity_for_detector()
+        print('\t done: {}'.format(time.time() - t))
+        print('building image...')
+        self.graph()
+        print('\t done')
+
+        print('elapsed time: {}'.format(time.time() - t))

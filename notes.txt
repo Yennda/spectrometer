@@ -12,3 +12,5 @@ d = Detector(dim=[80, 80], loc=[20, 10, -10], res=10000)
 
 setup = SetUp(source=s, crystal=c, detector=d)
 -------------------------------------------------
+
+33 a dal
