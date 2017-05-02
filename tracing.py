@@ -158,7 +158,7 @@ class SetUp:
                 self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
                 suma += self.detector.mesh[i][j].intensity
         print('Total photon count: {}'.format(suma))
-        print('Photon fraction: {}'.format(suma / self.source.intensity))
+        print('Photon fraction: {}'.format(suma/self.source.intensity))
 
     def intensity_for_point(self, det_point: DetectorPoint):
         intensity = 0
