@@ -1,6 +1,7 @@
 from algebra import la
 import numpy as np
 import numpy.linalg as l
+import math as m
 
 
 class Tools:
@@ -56,3 +57,10 @@ class Tools:
         ]
         # return (Rx * Ry * Rz * vec.T).T
         return la.dotmv(Rx, la.dotmv(Ry, la.dotmv(Rz, vec)))
+
+    @staticmethod
+    def gauss(x, s, mi):
+        output=m.exp(-(x - mi) ** 2 / (2 * s ** 2))
+        if output<1e-9:
+            return 0
+        return output

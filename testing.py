@@ -81,22 +81,24 @@ def display_ref(c):
 
 print('Beginning')
 
-# c = Crystal(d=2.3, D=5, R=30, n=40)
-# s = Source(loc=[0, 5, -50], wavelength=2.289)
-# d = Detector(dim=[80, 80], loc=[20, 10, -10], res=10000)
 
-for i in range(-3,10):
-    c = Crystal(d=2.3, D=5, R=30, n=200)
-    s = Source(loc=[0, 3, -30], wavelength=2.295)
-    d = Detector(dim=[20, 20], loc=[0, 0, -10*i], res=1000)
+#reference for editing
+# c = Crystal(d=2.3, D=5, R=30, n=200)
+# s = Source(loc=[0, 3, -30], wavelength=2.295)
+# d = Detector(dim=[20, 20], loc=[0, 0, -30], res=1000)
 
-    setup = SetUp(source=s, crystal=c, detector=d)
+c = Crystal(d=2.3, D=5, R=30, n=2000)
+s = Source(loc=[0, 3, -30], wavelength=2.295)
+d = Detector(dim=[10, 10], loc=[0, 0, 0], res=500)
 
-    setup.do()
-    # setup.compute_reflected()
+setup = SetUp(source=s, crystal=c, detector=d)
 
-    display_ref(c)
-    display(setup)
+# setup.compute_reflected()
+setup.do()
+# setup.compute_reflected()
+
+display_ref(c)
+display(setup)
 
 
 

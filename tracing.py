@@ -5,7 +5,7 @@ import time
 
 from scipy import misc
 from algebra import la
-from tools import Tools
+from tools import Tools as tl
 
 """
 All the positions and dimensions are in centimetres. Except for the wavelengths and lattice constants, that are in Angstroems.
@@ -14,14 +14,9 @@ All the positions and dimensions are in centimetres. Except for the wavelengths 
 
 class Detector:
     def __init__(self, dim: list, loc: list, res):
-        """
-        :param dim [cm]: 
-        :param loc: 
-        :param res: [micrometres]
-        """
         self.dim = dim
         self.loc = loc
-        self.res = res / 1e4  # to centimeters
+        self.res = res / 1e4  # micrometers to centimeters
         self.nx = int(self.dim[0] / self.res)
         self.ny = int(self.dim[1] / self.res)
 
@@ -31,7 +26,6 @@ class Detector:
     def generate_mesh(self):
         n = np.matrix([0, 0, 1])
 
-        # generating mesh
         mesh = [[i for i in range(self.ny)] for i in range(self.nx)]
 
         for i in range(self.nx):
@@ -47,11 +41,15 @@ class Detector:
                 self.mesh[i][j].loc = la.plus(self.mesh[i][j].loc, vector)
 
     def rotate(self, angles, u='rad'):
-        self.n = Tools.rotate(self.n, angles, u)
+        self.n = tl.rotate(self.n, angles, u)
+
+        self.translate(la.i(self.loc))
 
         for i in range(-self.nx // 2, self.nx // 2 + 1):
             for j in range(-self.ny // 2, self.ny // 2 + 1):
-                self.mesh[i][j].loc = Tools.rotate(self.mesh[i][j].loc, angles, u)
+                self.mesh[i][j].loc = tl.rotate(self.mesh[i][j].loc, angles, u)
+
+        self.translate(self.loc)
 
 
 class DetectorPoint:
@@ -69,10 +67,6 @@ class Source:
 
 class CrystalPoint:
     def __init__(self, loc: np.array, n: np.array):
-        """
-        :param loc: coordinates [cm]
-        :param n: normal vector
-        """
         self.loc = loc
         self.n = n
         self.out = list()
@@ -80,19 +74,13 @@ class CrystalPoint:
 
 class Crystal:
     def __init__(self, d, D, R, n):
-        """
-        :param d: lattice constant [Ang]
-        :param D: diameter of the crystal [cm]
-        :param R: radius of curvature [cm]
-        :param n: number of points 
-        :return: 
-        """
         self.d = d
         self.R = R
         self.D = D
         self.theta_max = m.atan(d / R)
         self.n = n
         self.points = self.generate_points_random()
+        self.points_em = []
 
     def bragg_angle(self, wavelength, order: int):
         return m.asin((wavelength * order) / (2 * self.d))
@@ -148,27 +136,35 @@ class SetUp:
     def compute_reflected(self):
         bragg = self.crystal.bragg_angle(self.source.wl, 2)
 
-        tf = list()
+        def rock_curve(x):
+            return tl.gauss(x, mi=bragg, s=0.0014544410433286077 / 3)
+
         for p in self.crystal.points:
             # unit 'wavevector' s, distance r, output intensity io
             # necessary to implement reflectivity of the crystal
             s = la.normalize(la.minus(p.loc, self.source.loc))
-            r = la.norm(la.plus(p.loc, self.source.loc))
-            io = self.source.intensity / r ** 2
+            r = la.norm(la.minus(p.loc, self.source.loc))
+            io = self.source.intensity / (self.crystal.n * r ** 2) * rock_curve(m.pi / 2 - m.acos(la.dot(s, la.i(p.n))))
 
-            if Tools.mol(m.pi / 2 - m.acos(la.dot(s, la.i(p.n))), bragg, 0.005):
+            if io != 0:
                 p.out.append(la.x((la.minus(la.plus(p.n, s), s)), 2 * io))
 
+        self.crystal.points_em = [p for p in self.crystal.points if p.out != []]
+
     def intensity_for_detector(self):
+        suma = 0
         for i in range(self.detector.nx):
             for j in range(self.detector.ny):
                 self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
+                suma += self.detector.mesh[i][j].intensity
+        print('Total photon count: {}'.format(suma))
+        print('Photon fraction: {}'.format(suma / self.source.intensity))
 
     def intensity_for_point(self, det_point: DetectorPoint):
         intensity = 0
-        for p in self.crystal.points:
+        for p in self.crystal.points_em:
             for o in p.out:
-                if Tools.mols(la.normalize(o), la.normalize(la.minus(det_point.loc, p.loc)), e=0.05):
+                if tl.mols(la.normalize(o), la.normalize(la.minus(det_point.loc, p.loc)), e=0.05):
                     intensity += la.norm(o)
                     # print('zasah!!!')
         return intensity
