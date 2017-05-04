@@ -85,19 +85,22 @@ def display_ref(c: CrystalPoint):
 print('Beginning')
 
 c = CrystalN(d=2.3, D=5, r=30, loc=[0, 5, 80])
-s = SourceN(wavelength=2.290, intensity=1000, number=10000)
+s = SourceN(wavelength=2.290, intensity=1000, number=100)
 d = Detector(dim=[10, 10], loc=[0, 5, 40], res=500)
 
 setup = SetUpN(source=s, crystal=c, detector=d)
 
 t = time.time()
 
-setup.shine()
-print('Shine: {}'.format(time.time() - t))
+setup.shine_eff()
+print('Shine effectively: {}'.format(time.time() - t))
 
-setup.reflect()
-print('Reflect: {}'.format(time.time() - t))
-
+# setup.shine()
+# print('Shine: {}'.format(time.time() - t))
+#
+# setup.reflect()
+# print('Reflect: {}'.format(time.time() - t))
+#
 setup.intensity_for_detector()
 print('Detector: {}'.format(time.time() - t))
 

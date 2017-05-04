@@ -164,24 +164,58 @@ class SetUpN:
 
         print('Bragg angle: {:.4f}°'.format(tl.deg_from_rad(self.bragg)))
 
-    def shine(self):
-        for i in range(self.source.number):
-            s = [0.5 - random.random() for j in range(3)]
-            while la.cos(self.direction, s) < m.cos(self.max_angle):
-                s = [0.5 - random.random() for j in range(3)]
-            self.source.rays.append(la.normalize(s))
+    def reflect_point_eff(self, s):
+        cp_loc = la.x(s, tl.qroot(
+            a=1,
+            b=-2 * la.dot(s, self.crystal.loc_centre),
+            c=la.norm(self.crystal.loc_centre) ** 2 - self.crystal.r ** 2
+        ))
+        if la.norm(la.minus(cp_loc, self.crystal.loc)[:2]) < self.crystal.D / 2:
+            normal = la.i(la.normalize(la.minus(cp_loc, self.crystal.loc_centre)))
+            cpoint = CrystalPoint(loc=cp_loc, n=normal)
+            if not self.ray_on_point_eff(cpoint, la.normalize(cp_loc)):
+                return False
 
-    def ray_on_point(self, point: CrystalPoint, ray: list):
-        point.ray_in.append(ray)
+            self.crystal.points.append(cpoint)
+            self.source.count_reached_crystal += 1
+
+            return True
+        return False
+
+    def ray_on_point_eff(self, point: CrystalPoint, ray: list):
 
         def rock_curve(x):
             return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
 
         out_intensity = self.source.intensity_per_photon * rock_curve(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
+
         if out_intensity != 0:
             self.crystal.count_reflected += 1
             rayout = [out_intensity * (-ray[i] + 2 * (point.n[i] + ray[i])) for i in range(3)]
+
+            point.ray_in.append(ray)
             point.ray_out.append(rayout)
+            return True
+
+        return False
+
+    def shine_eff(self):
+        for i in range(self.source.number):
+            done = False
+            while not done:
+                s = [0.5 - random.random() for j in range(3)]
+                if la.cos(self.direction, s) < m.cos(self.max_angle):
+                    continue
+                done = self.reflect_point_eff(la.normalize(s))
+            self.source.rays.append(s)
+
+    def shine(self):
+        for i in range(self.source.number):
+            s = [0.5 - random.random() for j in range(3)]
+            while la.cos(self.direction, s) < m.cos(self.max_angle):
+                s = [0.5 - random.random() for j in range(3)]
+
+            self.source.rays.append(la.normalize(s))
 
     def reflect(self):
         for s in self.source.rays:
@@ -198,10 +232,22 @@ class SetUpN:
                 self.crystal.points.append(cpoint)
                 self.source.count_reached_crystal += 1
 
+    def ray_on_point(self, point: CrystalPoint, ray: list):
+        point.ray_in.append(ray)
+
+        def rock_curve(x):
+            return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
+
+        out_intensity = self.source.intensity_per_photon * rock_curve(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
+        if out_intensity != 0:
+            self.crystal.count_reflected += 1
+            rayout = [out_intensity * (-ray[i] + 2 * (point.n[i] + ray[i])) for i in range(3)]
+            point.ray_out.append(rayout)
+
     def intensity_for_detector(self):
         suma = 0
         for i in range(self.detector.nx):
-            print('{}/{}'.format(i, self.detector.nx))
+            # print('{}/{}'.format(i, self.detector.nx))
             for j in range(self.detector.ny):
                 self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
                 suma += self.detector.mesh[i][j].intensity
