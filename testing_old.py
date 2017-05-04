@@ -18,15 +18,12 @@ def display(setup: SetUp):
 
     x = [p.loc[0] for p in c.points]
     y = [p.loc[2] for p in c.points]
-
-    x.append(0)
-    y.append(0)
-
+    x.append(s.loc[0])
+    y.append(s.loc[2])
     for r in d.mesh:
         for p in r:
             x.append(p.loc[0])
             y.append(p.loc[2])
-
     fig = plt.figure(figsize=(6, 6))
     ax = fig.add_axes([0.2, 0.2, 0.7, 0.7])
     ax.scatter(x, y, linewidth=2, color='green')
@@ -35,8 +32,8 @@ def display(setup: SetUp):
 
     x = [p.loc[0] for p in c.points]
     y = [p.loc[1] for p in c.points]
-    x.append(0)
-    y.append(0)
+    x.append(s.loc[0])
+    y.append(s.loc[1])
     for r in d.mesh:
         for p in r:
             x.append(p.loc[0])
@@ -49,8 +46,8 @@ def display(setup: SetUp):
 
     x = [p.loc[1] for p in c.points]
     y = [p.loc[2] for p in c.points]
-    x.append(0)
-    y.append(0)
+    x.append(s.loc[1])
+    y.append(s.loc[2])
     for r in d.mesh:
         for p in r:
             x.append(p.loc[1])
@@ -62,14 +59,14 @@ def display(setup: SetUp):
     fig.savefig('display/graph_yz.png', dpi=200, bbox_inches='tight')
 
 
-def display_ref(c: CrystalPoint):
+def display_ref(c):
     x0 = [p.loc[0] for p in c.points]
     y0 = [p.loc[1] for p in c.points]
 
     x = list()
     y = list()
     for p in c.points:
-        if len(p.ray_out) != 0:
+        if len(p.out) != 0:
             x.append(p.loc[0])
             y.append(p.loc[1])
 
@@ -84,46 +81,26 @@ def display_ref(c: CrystalPoint):
 
 print('Beginning')
 
-c = CrystalN(d=2.3, D=5, r=30, loc=[0, 5, 80])
-s = SourceN(wavelength=2.290, intensity=1000, number=10000)
-d = Detector(dim=[10, 10], loc=[0, 5, 40], res=500)
 
-setup = SetUpN(source=s, crystal=c, detector=d)
+#reference for editing
+# c = Crystal(d=2.3, D=5, R=30, n=200)
+# s = Source(loc=[0, 3, -30], wavelength=2.295)
+# d = Detector(dim=[20, 20], loc=[0, 0, -30], res=1000)
 
-t = time.time()
+c = Crystal(d=2.3, D=5, R=30, n=2000)
+s = Source(loc=[0, 3, -30], wavelength=2.295)
+d = Detector(dim=[10, 10], loc=[0, 0, 0], res=500)
 
-setup.shine()
-print('Shine: {}'.format(time.time() - t))
+setup = SetUp(source=s, crystal=c, detector=d)
 
-setup.reflect()
-print('Reflect: {}'.format(time.time() - t))
-
-setup.intensity_for_detector()
-print('Detector: {}'.format(time.time() - t))
-
-setup.graph()
-print('--------------------\nStatisitcs')
-print('Photon on crystal crystal {}'.format(s.count_reached_crystal))
-print('Photons reflected {}'.format(c.count_reflected))
-print('Elapsed time: {}'.format(time.time() - t))
-
-x = [r.loc[0] for r in c.points if r.ray_out != []]
-y = [r.loc[1] for r in c.points if r.ray_out != []]
-x0 = [r.loc[0] for r in c.points]
-y0 = [r.loc[1] for r in c.points]
-
-fig = plt.figure(figsize=(6, 6))
-ax = fig.add_axes([0.2, 0.2, 0.7, 0.7])
-ax.scatter(x0, y0, linewidth=1, color='green')
-ax.scatter(x, y, linewidth=1, color='red')
-# ax.set_xlim([0, 50])
-# ax.set_ylim([-20, 30])
-# ax.set_xlim([-2, 2])
-# ax.set_ylim([-2, 2])
-ax.grid(True)
-fig.savefig('display/graph.png', dpi=200, bbox_inches='tight')
+# setup.compute_reflected()
+setup.do()
+# setup.compute_reflected()
 
 display_ref(c)
 display(setup)
+
+
+
 
 # winsound.Beep(440, 1000)

@@ -14,3 +14,45 @@ setup = SetUp(source=s, crystal=c, detector=d)
 -------------------------------------------------
 
 33 a dal
+
+/
+------------------------------------------------
+vzor_1
+c = CrystalN(d=2.3, D=5, r=30, loc=[0, 5, 80])
+s = SourceN(wavelength=2.290, intensity=1000, number=500)
+d = Detector(dim=[10, 10], loc=[0, 5, 40], res=500)
+
+setup = SetUpN(source=s, crystal=c, detector=d)
+
+Shine: 55.20576453208923
+Reflect: 55.23479151725769
+
+Total photon count: 0.004159584599129537
+Photon fraction: 4.159584599129536e-06
+Detector: 88.09240794181824
+Maximal intensity 0.00048098767570530377
+--------------------
+Statisitcs
+Photon on crystal crystal 500
+Photons reflected 41
+Elapsed time: 88.18449187278748
+
+-------------------------------------------------
+vzor_2
+c = CrystalN(d=2.3, D=5, r=30, loc=[0, 5, 80])
+s = SourceN(wavelength=2.290, intensity=1000, number=3000)
+d = Detector(dim=[10, 10], loc=[0, 5, 40], res=500)
+
+setup = SetUpN(source=s, crystal=c, detector=d)
+
+Shine: 369.12976932525635
+Reflect: 369.64223170280457
+Total photon count: 0.0078638378642062
+Photon fraction: 7.8638378642062e-06
+Detector: 584.6691040992737
+Maximal intensity 0.00035269006622358506
+--------------------
+Statisitcs
+Photon on crystal crystal 3000
+Photons reflected 248
+Elapsed time: 584.7461340427399

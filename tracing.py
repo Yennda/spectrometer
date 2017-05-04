@@ -65,11 +65,36 @@ class Source:
         self.intensity = intensity
 
 
+class SourceN:
+    def __init__(self, wavelength: float, intensity: int, number: int):
+        self.wl = wavelength
+        self.intensity = intensity
+        self.intensity_per_photon = None
+        self.number = number
+        self.rays = list()
+        self.count_reached_crystal = 0
+
+
 class CrystalPoint:
-    def __init__(self, loc: np.array, n: np.array):
+    def __init__(self, loc: list, n: list):
         self.loc = loc
         self.n = n
-        self.out = list()
+        self.ray_in = list()
+        self.ray_out = list()
+
+
+class CrystalN:
+    def __init__(self, d, D, r, loc):
+        self.d = d
+        self.r = r
+        self.D = D
+        self.loc_centre = la.minus(loc, [0, 0, r])
+        self.loc = loc
+        self.points = list()
+        self.count_reflected = 0
+
+    def bragg_angle(self, wavelength, order: int):
+        return m.asin((wavelength * order) / (2 * self.d))
 
 
 class Crystal:
@@ -127,6 +152,96 @@ class Crystal:
         return points
 
 
+class SetUpN:
+    def __init__(self, source: SourceN, crystal: CrystalN, detector: Detector):
+        self.source = source
+        self.crystal = crystal
+        self.detector = detector
+        self.bragg = crystal.bragg_angle(source.wl, 2)
+        self.direction = la.normalize(crystal.loc)
+        self.max_angle = m.atan(crystal.D / 2 / la.norm(crystal.loc))
+        self.source.intensity_per_photon = (1 - m.cos(self.max_angle)) / 2 * source.intensity / source.number
+
+        print('Bragg angle: {:.4f}°'.format(tl.deg_from_rad(self.bragg)))
+
+    def shine(self):
+        for i in range(self.source.number):
+            s = [0.5 - random.random() for j in range(3)]
+            while la.cos(self.direction, s) < m.cos(self.max_angle):
+                s = [0.5 - random.random() for j in range(3)]
+            self.source.rays.append(la.normalize(s))
+
+    def ray_on_point(self, point: CrystalPoint, ray: list):
+        point.ray_in.append(ray)
+
+        def rock_curve(x):
+            return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
+
+        out_intensity = self.source.intensity_per_photon * rock_curve(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
+        if out_intensity != 0:
+            self.crystal.count_reflected += 1
+            rayout = [out_intensity * (-ray[i] + 2 * (point.n[i] + ray[i])) for i in range(3)]
+            point.ray_out.append(rayout)
+
+    def reflect(self):
+        for s in self.source.rays:
+            cp_loc = la.x(s, tl.qroot(
+                a=1,
+                b=-2 * la.dot(s, self.crystal.loc_centre),
+                c=la.norm(self.crystal.loc_centre) ** 2 - self.crystal.r ** 2
+            ))
+            if la.norm(la.minus(cp_loc, self.crystal.loc)[:2]) < self.crystal.D / 2:
+                normal = la.i(la.normalize(la.minus(cp_loc, self.crystal.loc_centre)))
+                cpoint = CrystalPoint(loc=cp_loc, n=normal)
+                self.ray_on_point(cpoint, la.normalize(cp_loc))
+                # print(cpoint.ray_out[0])
+                self.crystal.points.append(cpoint)
+                self.source.count_reached_crystal += 1
+
+    def intensity_for_detector(self):
+        suma = 0
+        for i in range(self.detector.nx):
+            print('{}/{}'.format(i, self.detector.nx))
+            for j in range(self.detector.ny):
+                self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
+                suma += self.detector.mesh[i][j].intensity
+        print('Total photon count: {}'.format(suma))
+        print('Photon fraction: {}'.format(suma / self.source.intensity))
+
+    def intensity_for_point(self, det_point: DetectorPoint):
+        intensity = 0
+        for p in self.crystal.points:
+            for o in p.ray_out:
+                if tl.mols(la.normalize(o), la.normalize(la.minus(det_point.loc, p.loc)), e=0.001):
+                    intensity += la.norm(o)
+                    # print('zasah!!!')
+        return intensity
+
+    def graph(self):
+        # f = open('name.txt', 'r+')
+        # number = int(f.read())
+        # f.close()
+
+        image = np.ndarray([self.detector.nx, self.detector.ny])
+        maximum = list()
+        for i in self.detector.mesh:
+            for j in i:
+                maximum.append(j.intensity)
+        maximum.sort()
+        print('Maximal intensity {}'.format(maximum[-1]))
+
+        for i in range(self.detector.nx):
+            for j in range(self.detector.ny):
+                if maximum[-1] != 0:
+                    image[i, j] = self.detector.mesh[i][j].intensity / maximum[-1] * 255
+                else:
+                    image[i, j] = self.detector.mesh[i][j].intensity
+        number = time.gmtime()
+        misc.imsave(
+            'images/detector{:02d}{:02d}{:02d}{:02d}{:02d}.png'.format(number.tm_mon, number.tm_mday, number.tm_hour,
+                                                                       number.tm_min, number.tm_sec), image)
+
+
 class SetUp:
     def __init__(self, source: Source, crystal: Crystal, detector: Detector):
         self.source = source
@@ -158,7 +273,7 @@ class SetUp:
                 self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
                 suma += self.detector.mesh[i][j].intensity
         print('Total photon count: {}'.format(suma))
-        print('Photon fraction: {}'.format(suma/self.source.intensity))
+        print('Photon fraction: {}'.format(suma / self.source.intensity))
 
     def intensity_for_point(self, det_point: DetectorPoint):
         intensity = 0

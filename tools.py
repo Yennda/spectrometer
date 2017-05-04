@@ -60,7 +60,21 @@ class Tools:
 
     @staticmethod
     def gauss(x, s, mi):
-        output=m.exp(-(x - mi) ** 2 / (2 * s ** 2))
-        if output<1e-9:
+        output = m.exp(-(x - mi) ** 2 / (2 * s ** 2))
+        if output < 1e-9:
             return 0
         return output
+
+    @staticmethod
+    def qroot(a, b, c):
+        D = b ** 2 - 4 * a * c
+        if D < 0:
+            raise ValueError
+        elif D == 0:
+            return -b / (2 * a)
+        else:
+            x1 = (-b + D ** 0.5) / (2 * a)
+            x2 = (-b - D ** 0.5) / (2 * a)
+            # print(x1)
+            # print(x2)
+            return x1

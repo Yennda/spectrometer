@@ -23,6 +23,10 @@ class la:
         return s
 
     @staticmethod
+    def cos(a, b):
+        return la.dot(la.normalize(a), la.normalize(b))
+
+    @staticmethod
     def dotmv(A, b):
         out = list()
         for r in A:
