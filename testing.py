@@ -62,7 +62,7 @@ def display(setup: SetUp):
     fig.savefig('display/graph_yz.png', dpi=200, bbox_inches='tight')
 
 
-def display_ref(c: CrystalPoint):
+def display_ref(c: CrystalN):
     x0 = [p.loc[0] for p in c.points]
     y0 = [p.loc[1] for p in c.points]
 
@@ -77,7 +77,8 @@ def display_ref(c: CrystalPoint):
     ax = fig.add_axes([0.2, 0.2, 0.7, 0.7])
     ax.scatter(x0, y0, linewidth=1, color='green')
     ax.scatter(x, y, linewidth=1, color='red')
-
+    ax.set_xlim([c.loc[0] - c.D, c.loc[0] + c.D])
+    ax.set_ylim([c.loc[1] - c.D, c.loc[1] + c.D])
     ax.grid(True)
     fig.savefig('display/graph_source.png', dpi=200, bbox_inches='tight')
 
@@ -85,7 +86,7 @@ def display_ref(c: CrystalPoint):
 print('Beginning')
 
 c = CrystalN(d=2.3, D=5, r=30, loc=[0, 5, 80])
-s = SourceN(wavelength=2.290, intensity=1000, number=100)
+s = SourceN(wavelength=2.290, intensity=1000, number=500)
 d = Detector(dim=[10, 10], loc=[0, 5, 40], res=500)
 
 setup = SetUpN(source=s, crystal=c, detector=d)

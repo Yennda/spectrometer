@@ -203,7 +203,12 @@ class SetUpN:
         for i in range(self.source.number):
             done = False
             while not done:
-                s = [0.5 - random.random() for j in range(3)]
+                # s = [0.5 - random.random() for j in range(3)]
+                s = la.plus(
+                    self.crystal.loc,
+                    [self.crystal.D * (0.5 - random.random()) for j in range(2)] + [0]
+                )
+
                 if la.cos(self.direction, s) < m.cos(self.max_angle):
                     continue
                 done = self.reflect_point_eff(la.normalize(s))
@@ -246,12 +251,14 @@ class SetUpN:
 
     def intensity_for_detector(self):
         suma = 0
+        t = time.time()
         for i in range(self.detector.nx):
-            # print('{}/{}'.format(i, self.detector.nx))
+            if i != 0:
+                print('{}/{}, {}s'.format(i, self.detector.nx, int((time.time() - t) * (self.detector.nx / i - 1))))
             for j in range(self.detector.ny):
                 self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
                 suma += self.detector.mesh[i][j].intensity
-        print('Total photon count: {}'.format(suma))
+        print('Total photon intensity: {}'.format(suma))
         print('Photon fraction: {}'.format(suma / self.source.intensity))
 
     def intensity_for_point(self, det_point: DetectorPoint):
@@ -263,12 +270,9 @@ class SetUpN:
                     # print('zasah!!!')
         return intensity
 
-    def graph(self):
-        # f = open('name.txt', 'r+')
-        # number = int(f.read())
-        # f.close()
-
+    def relativize_image(self):
         image = np.ndarray([self.detector.nx, self.detector.ny])
+
         maximum = list()
         for i in self.detector.mesh:
             for j in i:
@@ -282,10 +286,26 @@ class SetUpN:
                     image[i, j] = self.detector.mesh[i][j].intensity / maximum[-1] * 255
                 else:
                     image[i, j] = self.detector.mesh[i][j].intensity
+
+        return image
+
+    def graph(self):
+        # f = open('name.txt', 'r+')
+        # number = int(f.read())
+        # f.close()
+        image = self.relativize_image()
+        # image = np.ndarray([self.detector.nx, self.detector.ny])
+        #
+        # for i in range(self.detector.nx):
+        #     for j in range(self.detector.ny):
+        #         image[i, j] = self.detector.mesh[i][j].intensity
+        # if image[i, j] != 0:
+        #     print(image[i, j])
+
         number = time.gmtime()
         misc.imsave(
-            'images/detector{:02d}{:02d}{:02d}{:02d}{:02d}.png'.format(number.tm_mon, number.tm_mday, number.tm_hour,
-                                                                       number.tm_min, number.tm_sec), image)
+            'images/detector{:02d}{:02d}{:02d}{:02d}{:02d}.tiff'.format(number.tm_mon, number.tm_mday, number.tm_hour,
+                                                                        number.tm_min, number.tm_sec), image, 'tiff')
 
 
 class SetUp:
