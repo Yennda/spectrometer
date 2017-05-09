@@ -16,6 +16,10 @@ class Detector:
     def __init__(self, dim: list, loc: list, res):
         self.dim = dim
         self.loc = loc
+        self.rot = 3 * [0]
+        self.ux = [1, 0, 0]
+        self.uy = [0, 1, 0]
+
         self.res = res / 1e4  # micrometers to centimeters
         self.nx = int(self.dim[0] / self.res)
         self.ny = int(self.dim[1] / self.res)
@@ -23,8 +27,10 @@ class Detector:
         self.n, self.mesh = self.generate_mesh()
         self.translate(self.loc)
 
+        self.suma_intensity = 0
+
     def generate_mesh(self):
-        n = np.matrix([0, 0, 1])
+        n = [0, 0, 1]
 
         mesh = [[i for i in range(self.ny)] for i in range(self.nx)]
 
@@ -41,13 +47,21 @@ class Detector:
                 self.mesh[i][j].loc = la.plus(self.mesh[i][j].loc, vector)
 
     def rotate(self, angles, u='rad'):
-        self.n = tl.rotate(self.n, angles, u)
+        if u == 'r':
+            angles = la.x(angles, m.pi)
+        elif u == 'd':
+            angles = [tl.rad_from_deg(a) for a in angles]
+        self.rot += angles
+
+        self.n = tl.rotate(self.n, angles)
+        self.ux = tl.rotate(self.ux, angles)
+        self.uy = tl.rotate(self.uy, angles)
 
         self.translate(la.i(self.loc))
 
         for i in range(-self.nx // 2, self.nx // 2 + 1):
             for j in range(-self.ny // 2, self.ny // 2 + 1):
-                self.mesh[i][j].loc = tl.rotate(self.mesh[i][j].loc, angles, u)
+                self.mesh[i][j].loc = tl.rotate(self.mesh[i][j].loc, angles)
 
         self.translate(self.loc)
 
@@ -59,13 +73,6 @@ class DetectorPoint:
 
 
 class Source:
-    def __init__(self, loc: list, wavelength, intensity=1):
-        self.loc = np.array(loc)
-        self.wl = wavelength
-        self.intensity = intensity
-
-
-class SourceN:
     def __init__(self, wavelength: float, intensity: int, number: int):
         self.wl = wavelength
         self.intensity = intensity
@@ -83,7 +90,7 @@ class CrystalPoint:
         self.ray_out = list()
 
 
-class CrystalN:
+class Crystal:
     def __init__(self, d, D, r, loc):
         self.d = d
         self.r = r
@@ -97,63 +104,8 @@ class CrystalN:
         return m.asin((wavelength * order) / (2 * self.d))
 
 
-class Crystal:
-    def __init__(self, d, D, R, n):
-        self.d = d
-        self.R = R
-        self.D = D
-        self.theta_max = m.atan(d / R)
-        self.n = n
-        self.points = self.generate_points_random()
-        self.points_em = []
-
-    def bragg_angle(self, wavelength, order: int):
-        return m.asin((wavelength * order) / (2 * self.d))
-
-    def abs_coordinates(self, theta, phi):
-        x = self.R * m.sin(phi) * m.sin(theta)
-        y = self.R * m.cos(phi) * m.sin(theta)
-        z = self.R * m.cos(theta)
-        return [x, y, z]
-
-    def generate_points(self):
-        points = list()
-        for i in range(-self.n, self.n + 1):
-            theta = self.theta_max / self.n * i
-            n_phi = int(self.n * theta / self.theta_max)
-            for j in range(abs(n_phi)):
-                phi = 2 * m.pi / n_phi * j
-                points.append(CrystalPoint(
-                    self.abs_coordinates(theta, phi),
-                    self.abs_coordinates(theta, phi) / self.R)
-                )
-        return points
-
-    def generate_points_random(self):
-        points = list()
-
-        for i in range(self.n):
-            x = 2
-            y = 2
-            while ((x - 0.5) ** 2 + (y - 0.5) ** 2) > 0.5 ** 2:
-                x = random.random()
-                y = random.random()
-
-            loc = [
-                x * self.D - self.D / 2,
-                y * self.D - self.D / 2,
-                (self.R ** 2 -
-                 (x * self.D - self.D / 2) ** 2 -
-                 (y * self.D - self.D / 2) ** 2) ** 0.5
-            ]
-
-            points.append(CrystalPoint(loc=loc, n=la.x(loc, (-1 / self.R))))
-
-        return points
-
-
-class SetUpN:
-    def __init__(self, source: SourceN, crystal: CrystalN, detector: Detector):
+class SetUp:
+    def __init__(self, source: Source, crystal: Crystal, detector: Detector):
         self.source = source
         self.crystal = crystal
         self.detector = detector
@@ -196,7 +148,7 @@ class SetUpN:
             point.ray_in.append(ray)
             point.ray_out.append(rayout)
             return True
-
+        # if True, shines to the whole crystal surface, if False, shines only to reflecting area
         return False
 
     def shine_eff(self):
@@ -212,62 +164,32 @@ class SetUpN:
                 if la.cos(self.direction, s) < m.cos(self.max_angle):
                     continue
                 done = self.reflect_point_eff(la.normalize(s))
-            self.source.rays.append(s)
-
-    def shine(self):
-        for i in range(self.source.number):
-            s = [0.5 - random.random() for j in range(3)]
-            while la.cos(self.direction, s) < m.cos(self.max_angle):
-                s = [0.5 - random.random() for j in range(3)]
-
             self.source.rays.append(la.normalize(s))
 
-    def reflect(self):
-        for s in self.source.rays:
-            cp_loc = la.x(s, tl.qroot(
-                a=1,
-                b=-2 * la.dot(s, self.crystal.loc_centre),
-                c=la.norm(self.crystal.loc_centre) ** 2 - self.crystal.r ** 2
-            ))
-            if la.norm(la.minus(cp_loc, self.crystal.loc)[:2]) < self.crystal.D / 2:
-                normal = la.i(la.normalize(la.minus(cp_loc, self.crystal.loc_centre)))
-                cpoint = CrystalPoint(loc=cp_loc, n=normal)
-                self.ray_on_point(cpoint, la.normalize(cp_loc))
-                # print(cpoint.ray_out[0])
-                self.crystal.points.append(cpoint)
-                self.source.count_reached_crystal += 1
-
-    def ray_on_point(self, point: CrystalPoint, ray: list):
-        point.ray_in.append(ray)
-
-        def rock_curve(x):
-            return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
-
-        out_intensity = self.source.intensity_per_photon * rock_curve(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
-        if out_intensity != 0:
-            self.crystal.count_reflected += 1
-            rayout = [out_intensity * (-ray[i] + 2 * (point.n[i] + ray[i])) for i in range(3)]
-            point.ray_out.append(rayout)
-
     def intensity_for_detector(self):
-        suma = 0
+        self.detector.suma_intensity = 0
         t = time.time()
         for i in range(self.detector.nx):
             if i != 0:
                 print('{}/{}, {}s'.format(i, self.detector.nx, int((time.time() - t) * (self.detector.nx / i - 1))))
             for j in range(self.detector.ny):
                 self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
-                suma += self.detector.mesh[i][j].intensity
-        print('Total photon intensity: {}'.format(suma))
-        print('Photon fraction: {}'.format(suma / self.source.intensity))
+                self.detector.suma_intensity += self.detector.mesh[i][j].intensity
 
     def intensity_for_point(self, det_point: DetectorPoint):
         intensity = 0
-        for p in self.crystal.points:
-            for o in p.ray_out:
-                if tl.mols(la.normalize(o), la.normalize(la.minus(det_point.loc, p.loc)), e=0.001):
+        for c in self.crystal.points:
+            for o in c.ray_out:
+                s = la.normalize(o)
+                r = la.minus(det_point.loc, c.loc)
+                a = m.fabs(la.dot(r, r)) / la.dot(s, r)
+
+                proj_x = la.x(self.detector.ux, la.dot(la.x(s, a), self.detector.ux) - la.dot(self.detector.ux, r))
+                proj_y = la.x(self.detector.uy, la.dot(la.x(s, a), self.detector.uy) - la.dot(self.detector.uy, r))
+
+                if la.norm(proj_x) < self.detector.res and la.norm(proj_y) < self.detector.res:
                     intensity += la.norm(o)
-                    # print('zasah!!!')
+
         return intensity
 
     def relativize_image(self):
@@ -307,88 +229,12 @@ class SetUpN:
             'images/detector{:02d}{:02d}{:02d}{:02d}{:02d}.tiff'.format(number.tm_mon, number.tm_mday, number.tm_hour,
                                                                         number.tm_min, number.tm_sec), image, 'tiff')
 
+    def solid_angle(self):
+        for i in range(1000)
+    def statistics(self):
+        print('--------------------\nStatisitcs')
+        print('Total photon intensity: {}'.format(self.detector.suma_intensity))
+        print('Photon fraction: {}'.format(self.detector.suma_intensity / self.source.intensity))
+        print('Photons on crystal {}'.format(self.source.count_reached_crystal))
+        print('Photons reflected {}'.format(self.crystal.count_reflected))
 
-class SetUp:
-    def __init__(self, source: Source, crystal: Crystal, detector: Detector):
-        self.source = source
-        self.crystal = crystal
-        self.detector = detector
-
-    def compute_reflected(self):
-        bragg = self.crystal.bragg_angle(self.source.wl, 2)
-
-        def rock_curve(x):
-            return tl.gauss(x, mi=bragg, s=0.0014544410433286077 / 3)
-
-        for p in self.crystal.points:
-            # unit 'wavevector' s, distance r, output intensity io
-            # necessary to implement reflectivity of the crystal
-            s = la.normalize(la.minus(p.loc, self.source.loc))
-            r = la.norm(la.minus(p.loc, self.source.loc))
-            io = self.source.intensity / (self.crystal.n * r ** 2) * rock_curve(m.pi / 2 - m.acos(la.dot(s, la.i(p.n))))
-
-            if io != 0:
-                p.out.append(la.x((la.minus(la.plus(p.n, s), s)), 2 * io))
-
-        self.crystal.points_em = [p for p in self.crystal.points if p.out != []]
-
-    def intensity_for_detector(self):
-        suma = 0
-        for i in range(self.detector.nx):
-            for j in range(self.detector.ny):
-                self.detector.mesh[i][j].intensity = self.intensity_for_point(self.detector.mesh[i][j])
-                suma += self.detector.mesh[i][j].intensity
-        print('Total photon count: {}'.format(suma))
-        print('Photon fraction: {}'.format(suma / self.source.intensity))
-
-    def intensity_for_point(self, det_point: DetectorPoint):
-        intensity = 0
-        for p in self.crystal.points_em:
-            for o in p.out:
-                if tl.mols(la.normalize(o), la.normalize(la.minus(det_point.loc, p.loc)), e=0.05):
-                    intensity += la.norm(o)
-                    # print('zasah!!!')
-        return intensity
-
-    def graph(self):
-        # f = open('name.txt', 'r+')
-        # number = int(f.read())
-        # f.close()
-
-        image = np.ndarray([self.detector.nx, self.detector.ny])
-        maximum = list()
-        for i in self.detector.mesh:
-            for j in i:
-                maximum.append(j.intensity)
-        maximum.sort()
-        print(maximum[-1])
-
-        for i in range(self.detector.nx):
-            for j in range(self.detector.ny):
-                if maximum[-1] != 0:
-                    image[i, j] = self.detector.mesh[i][j].intensity / maximum[-1] * 255
-                else:
-                    image[i, j] = self.detector.mesh[i][j].intensity
-        number = time.gmtime()
-        misc.imsave(
-            'images/detector{:02d}{:02d}{:02d}{:02d}{:02d}.png'.format(number.tm_mon, number.tm_mday, number.tm_hour,
-                                                                       number.tm_min, number.tm_sec), image)
-
-        # misc.imsave('images/detector{:03d}.png'.format(number), image)
-        # f = open('name.txt', 'w')
-        # f.write(str(number + 1))
-        # f.close()
-
-    def do(self):
-        t = time.time()
-        print('reflection...')
-        self.compute_reflected()
-        print('\t done: {}'.format(time.time() - t))
-        print('detector...')
-        self.intensity_for_detector()
-        print('\t done: {}'.format(time.time() - t))
-        print('building image...')
-        self.graph()
-        print('\t done')
-
-        print('elapsed time: {}'.format(time.time() - t))

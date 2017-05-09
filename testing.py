@@ -62,7 +62,7 @@ def display(setup: SetUp):
     fig.savefig('display/graph_yz.png', dpi=200, bbox_inches='tight')
 
 
-def display_ref(c: CrystalN):
+def display_ref(c: Crystal):
     x0 = [p.loc[0] for p in c.points]
     y0 = [p.loc[1] for p in c.points]
 
@@ -80,46 +80,40 @@ def display_ref(c: CrystalN):
     ax.set_xlim([c.loc[0] - c.D, c.loc[0] + c.D])
     ax.set_ylim([c.loc[1] - c.D, c.loc[1] + c.D])
     ax.grid(True)
-    fig.savefig('display/graph_source.png', dpi=200, bbox_inches='tight')
+    fig.savefig('display/graph_crystal.png', dpi=200, bbox_inches='tight')
 
 
 print('Beginning')
 
-c = CrystalN(d=2.3, D=5, r=30, loc=[0, 5, 80])
-s = SourceN(wavelength=2.290, intensity=1000, number=500)
+c = Crystal(d=2.3, D=5, r=30, loc=[0, 5, 80])
+s = Source(wavelength=2.290, intensity=1000, number=40)
 d = Detector(dim=[10, 10], loc=[0, 5, 40], res=500)
+# d.rotate([0, 60, 0], 'd')
 
-setup = SetUpN(source=s, crystal=c, detector=d)
+setup = SetUp(source=s, crystal=c, detector=d)
 
 t = time.time()
 
 setup.shine_eff()
-print('Shine effectively: {}'.format(time.time() - t))
+print('Shine effectively: {}s'.format(time.time() - t))
 
-# setup.shine()
-# print('Shine: {}'.format(time.time() - t))
-#
-# setup.reflect()
-# print('Reflect: {}'.format(time.time() - t))
-#
 setup.intensity_for_detector()
-print('Detector: {}'.format(time.time() - t))
+print('Detector: {}s'.format(int(time.time() - t)))
 
 setup.graph()
-print('--------------------\nStatisitcs')
-print('Photon on crystal crystal {}'.format(s.count_reached_crystal))
-print('Photons reflected {}'.format(c.count_reflected))
-print('Elapsed time: {}'.format(time.time() - t))
+setup.statistics()
 
-x = [r.loc[0] for r in c.points if r.ray_out != []]
-y = [r.loc[1] for r in c.points if r.ray_out != []]
-x0 = [r.loc[0] for r in c.points]
-y0 = [r.loc[1] for r in c.points]
+# x = [r.loc[0] for r in c.points if r.ray_out != []]
+# y = [r.loc[1] for r in c.points if r.ray_out != []]
+print(la.norm(s.rays[1]))
+print(s.rays)
+x0 = [r[0] for r in s.rays]
+y0 = [r[2] for r in s.rays]
 
 fig = plt.figure(figsize=(6, 6))
 ax = fig.add_axes([0.2, 0.2, 0.7, 0.7])
 ax.scatter(x0, y0, linewidth=1, color='green')
-ax.scatter(x, y, linewidth=1, color='red')
+# ax.scatter(x, y, linewidth=1, color='red')
 # ax.set_xlim([0, 50])
 # ax.set_ylim([-20, 30])
 # ax.set_xlim([-2, 2])

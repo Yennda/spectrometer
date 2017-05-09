@@ -34,11 +34,11 @@ class Tools:
         return vec / norm
 
     @staticmethod
-    def rotate(vec: list, angles, u='rad'):
-        if u == 'r':
-            angles = la.x(angles, m.pi)
-        elif u == 'd':
-            angles = [Tools.rad_from_deg(a) for a in angles]
+    def rotate(vec, angles):
+        # if u == 'r':
+        #     angles = la.x(angles, m.pi)
+        # elif u == 'd':
+        #     angles = [Tools.rad_from_deg(a) for a in angles]
 
         Rx = [
             [1, 0, 0],
@@ -55,7 +55,6 @@ class Tools:
             [m.sin(angles[2]), m.cos(angles[2]), 0],
             [0, 0, 1]
         ]
-        # return (Rx * Ry * Rz * vec.T).T
         return la.dotmv(Rx, la.dotmv(Ry, la.dotmv(Rz, vec)))
 
     @staticmethod
