@@ -7,6 +7,11 @@ from scipy import misc
 from algebra import la
 from tools import Tools as tl
 
+import matplotlib.pyplot as plt
+import matplotlib
+from matplotlib.patches import Polygon
+from matplotlib.collections import PatchCollection
+
 """
 All the positions and dimensions are in centimetres. Except for the wavelengths and lattice constants, that are in Angstroems.
 """
@@ -79,6 +84,7 @@ class Source:
         self.intensity_per_photon = None
         self.number = number
         self.rays = list()
+        self.total = 0
         self.count_reached_crystal = 0
 
 
@@ -114,6 +120,40 @@ class SetUp:
         self.max_angle = m.atan(crystal.D / 2 / la.norm(crystal.loc))
         self.source.intensity_per_photon = (1 - m.cos(self.max_angle)) / 2 * source.intensity / source.number
 
+        calpha = la.cos([0, self.crystal.loc[1], self.crystal.loc[2]], [0, 0, 1])
+        cbeta = la.cos([self.crystal.loc[0], 0, self.crystal.loc[2]], [0, 0, 1])
+
+        self.solid_angle = (m.pi * self.crystal.D ** 2 / 4 * calpha * cbeta) / (
+            4 * m.pi * la.norm(self.crystal.loc) ** 2)
+
+
+        # print(m.pi * self.crystal.D ** 2 / 4)
+        # print((m.pi * self.crystal.D ** 2 / 4 * calpha*cbeta))
+        # print(self.solid_angle)
+        # self.angles = [
+        #     m.acos(la.cos(self.crystal.loc, [1, 0, 0])),
+        #     m.acos(la.cos(self.crystal.loc, [0, 1, 0])),
+        #     m.acos(la.cos(self.crystal.loc, [0, 0, 1]))
+        # ]
+        # print('Angles:')
+        # print([tl.deg_from_rad(a) for a in self.angles])
+        #
+        # basis = [
+        #     [1, 0, 0],
+        #     [0, 1, 0],
+        #     [0, 0, 1]
+        # ]
+        # basis_rot = [tl.rotate(b, self.angles) for b in basis]
+        # angles = [
+        #     m.acos(la.cos(self.crystal.loc, basis_rot[0])),
+        #     m.acos(la.cos(self.crystal.loc, basis_rot[1])),
+        #     m.acos(la.cos(self.crystal.loc, basis_rot[2]))
+        # ]
+        # print('Angles:')
+        # print([tl.deg_from_rad(a) for a in self.angles])
+        # print('Angles 2:')
+        # print([tl.deg_from_rad(a) for a in angles])
+
         print('Bragg angle: {:.4f}°'.format(tl.deg_from_rad(self.bragg)))
 
     def reflect_point_eff(self, s):
@@ -147,11 +187,24 @@ class SetUp:
 
             point.ray_in.append(ray)
             point.ray_out.append(rayout)
+            self.source.total += 1
             return True
-        # if True, shines to the whole crystal surface, if False, shines only to reflecting area
+        self.source.total += 1
         return False
+        # if True, shines to the whole crystal surface, if False, shines only to reflecting area
 
-    def shine_eff(self):
+    def shine_spherically(self):
+        for i in range(self.source.number):
+            done = False
+            while not done:
+                s = [0.5 - random.random() for j in range(3)]
+                self.source.total += 1
+                if la.cos(self.direction, s) < m.cos(self.max_angle):
+                    continue
+                done = self.reflect_point_eff(la.normalize(s))
+            self.source.rays.append(la.normalize(s))
+
+    def shine(self):
         for i in range(self.source.number):
             done = False
             while not done:
@@ -165,6 +218,9 @@ class SetUp:
                     continue
                 done = self.reflect_point_eff(la.normalize(s))
             self.source.rays.append(la.normalize(s))
+
+        self.source.intensity_per_photon=self.source.intensity*self.solid_angle*self.source.number/(4*m.pi*self.source.total)
+
 
     def intensity_for_detector(self):
         self.detector.suma_intensity = 0
@@ -229,12 +285,88 @@ class SetUp:
             'images/detector{:02d}{:02d}{:02d}{:02d}{:02d}.tiff'.format(number.tm_mon, number.tm_mday, number.tm_hour,
                                                                         number.tm_min, number.tm_sec), image, 'tiff')
 
-    def solid_angle(self):
-        for i in range(1000)
+    # def solid_angle(self, number):
+    #     suma = 0
+    #     for i in range(number):
+    #         vec = [
+    #             (0.5 - random.random()),
+    #             (0.5 - random.random()),
+    #             (0.5 - random.random())
+    #         ]
+    #         for r in self.source.rays:
+    #             if la.cos(vec, r) > 0.999:
+    #                 suma += 1
+    #                 break
+    #     print('{}/{}=>{}'.format(suma, number, suma / number))
+    #     return suma / number
+
+    # def solid_angle_area(self):
+    #     def nearest(a, vectors):
+    #         min_norm = la.norm(la.minus(a, vectors[0]))
+    #         min_vec = vectors[0]
+    #         for a in vectors:
+    #             if 0 < la.norm(la.minus(a, a)) < min_norm:
+    #                 min_norm = la.norm(la.minus(a, a))
+    #                 min_vec = a
+    #         return min_vec
+    #
+    #     def abc(k, l, m):
+    #         return la.minus(m, k), la.minus(l, m), la.minus(k, l)
+    #
+    #     area = 0
+    #     triangles = list()
+    #     mesh = self.source.rays
+    #     o = mesh[0]
+    #     mesh.remove(o)
+    #     p = nearest(o, mesh)
+    #     mesh.remove(p)
+    #     q = nearest(p, mesh)
+    #     mesh.remove(q)
+    #     for i in range(self.source.number - 3):
+    #         a, b, c = abc(o, p, q)
+    #         triangles.append([o[1:], p[1:], q[1:]])
+    #         area += la.area(a, b)
+    #
+    #         o = p
+    #         p = q
+    #         q = nearest(p, mesh)
+    #         mesh.remove(q)
+    #     else:
+    #         a, b, c = abc(o, p, q)
+    #         area += la.area(a, b)
+    #
+    #     print(area)
+    #     print(area / (4 * m.pi))
+    #
+    #     fig, ax = plt.subplots()
+    #     patches = []
+    #     N = 5
+    #     for triangle in triangles:
+    #         # tri = [la.minustwo(t, triangles[0][0]) for t in triangle]
+    #
+    #         np_tri = np.array([la.x(la.minustwo(t, triangles[0][0]),100) for t in triangle])
+    #         poly = Polygon(np_tri, True)
+    #         patches.append(poly)
+    #
+    #     ax.set_xlim([-1, 0.6])
+    #     ax.set_ylim([-0.06, 0.1])
+    #     p = PatchCollection(patches, cmap=matplotlib.cm.jet, alpha=0.4)
+    #
+    #     colors = 100 * np.random.rand(len(patches))
+    #     p.set_array(np.array(colors))
+    #
+    #     ax.add_collection(p)
+    #
+    #     fig.savefig('display/triangles.png', dpi=200)
+    #     return area
+
     def statistics(self):
         print('--------------------\nStatisitcs')
         print('Total photon intensity: {}'.format(self.detector.suma_intensity))
-        print('Photon fraction: {}'.format(self.detector.suma_intensity / self.source.intensity))
+        print('Photon fraction: {}'.format(
+            self.detector.suma_intensity * self.solid_angle * self.source.number / (self.source.intensity*self.source.total)))
+        print('Photon fraction: {}'.format(
+            self.detector.suma_intensity
+
         print('Photons on crystal {}'.format(self.source.count_reached_crystal))
         print('Photons reflected {}'.format(self.crystal.count_reflected))
-

@@ -86,7 +86,7 @@ def display_ref(c: Crystal):
 print('Beginning')
 
 c = Crystal(d=2.3, D=5, r=30, loc=[0, 5, 80])
-s = Source(wavelength=2.290, intensity=1000, number=40)
+s = Source(wavelength=2.290, intensity=1000, number=100)
 d = Detector(dim=[10, 10], loc=[0, 5, 40], res=500)
 # d.rotate([0, 60, 0], 'd')
 
@@ -94,9 +94,9 @@ setup = SetUp(source=s, crystal=c, detector=d)
 
 t = time.time()
 
-setup.shine_eff()
+setup.shine()
 print('Shine effectively: {}s'.format(time.time() - t))
-
+print('All photons to crystal: {}'.format(s.total))
 setup.intensity_for_detector()
 print('Detector: {}s'.format(int(time.time() - t)))
 
@@ -105,8 +105,6 @@ setup.statistics()
 
 # x = [r.loc[0] for r in c.points if r.ray_out != []]
 # y = [r.loc[1] for r in c.points if r.ray_out != []]
-print(la.norm(s.rays[1]))
-print(s.rays)
 x0 = [r[0] for r in s.rays]
 y0 = [r[2] for r in s.rays]
 

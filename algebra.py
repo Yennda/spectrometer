@@ -8,6 +8,10 @@ class la:
         return [a[i] - b[i] for i in range(3)]
 
     @staticmethod
+    def minustwo(a, b):
+        return [a[i] - b[i] for i in range(2)]
+
+    @staticmethod
     def x(a, x):
         return [a[i] * x for i in range(len(a))]
 
@@ -21,6 +25,14 @@ class la:
         for i in range(3):
             s += a[i] * b[i]
         return s
+
+    @staticmethod
+    def vec(a, b):
+        return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
+
+    @staticmethod
+    def area(a, b):
+        return la.norm(la.vec(a, b))
 
     @staticmethod
     def cos(a, b):
