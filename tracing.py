@@ -6,6 +6,7 @@ import time
 from scipy import misc
 from algebra import la
 from tools import Tools as tl
+from curves import Curves
 
 import matplotlib.pyplot as plt
 import matplotlib
@@ -84,8 +85,8 @@ class Source:
         self.intensity_per_photon = None
         self.number = number
         self.rays = list()
-        self.total = 0
-        self.count_reached_crystal = 0
+        self.photons_total = 0
+        self.photons_reached = 0
 
 
 class CrystalPoint:
@@ -115,10 +116,13 @@ class SetUp:
         self.source = source
         self.crystal = crystal
         self.detector = detector
+        self.curveSi = Curves('reflectivity.csv')
+
         self.bragg = crystal.bragg_angle(source.wl, 2)
         self.direction = la.normalize(crystal.loc)
         self.max_angle = m.atan(crystal.D / 2 / la.norm(crystal.loc))
-        self.source.intensity_per_photon = (1 - m.cos(self.max_angle)) / 2 * source.intensity / source.number
+
+        # self.source.intensity_per_photon = (1 - m.cos(self.max_angle)) / 2 * source.intensity / source.number
 
         calpha = la.cos([0, self.crystal.loc[1], self.crystal.loc[2]], [0, 0, 1])
         cbeta = la.cos([self.crystal.loc[0], 0, self.crystal.loc[2]], [0, 0, 1])
@@ -126,37 +130,9 @@ class SetUp:
         self.solid_angle = (m.pi * self.crystal.D ** 2 / 4 * calpha * cbeta) / (
             4 * m.pi * la.norm(self.crystal.loc) ** 2)
 
-
-        # print(m.pi * self.crystal.D ** 2 / 4)
-        # print((m.pi * self.crystal.D ** 2 / 4 * calpha*cbeta))
-        # print(self.solid_angle)
-        # self.angles = [
-        #     m.acos(la.cos(self.crystal.loc, [1, 0, 0])),
-        #     m.acos(la.cos(self.crystal.loc, [0, 1, 0])),
-        #     m.acos(la.cos(self.crystal.loc, [0, 0, 1]))
-        # ]
-        # print('Angles:')
-        # print([tl.deg_from_rad(a) for a in self.angles])
-        #
-        # basis = [
-        #     [1, 0, 0],
-        #     [0, 1, 0],
-        #     [0, 0, 1]
-        # ]
-        # basis_rot = [tl.rotate(b, self.angles) for b in basis]
-        # angles = [
-        #     m.acos(la.cos(self.crystal.loc, basis_rot[0])),
-        #     m.acos(la.cos(self.crystal.loc, basis_rot[1])),
-        #     m.acos(la.cos(self.crystal.loc, basis_rot[2]))
-        # ]
-        # print('Angles:')
-        # print([tl.deg_from_rad(a) for a in self.angles])
-        # print('Angles 2:')
-        # print([tl.deg_from_rad(a) for a in angles])
-
         print('Bragg angle: {:.4f}°'.format(tl.deg_from_rad(self.bragg)))
 
-    def reflect_point_eff(self, s):
+    def reflection_crystal(self, s):
         cp_loc = la.x(s, tl.qroot(
             a=1,
             b=-2 * la.dot(s, self.crystal.loc_centre),
@@ -165,21 +141,23 @@ class SetUp:
         if la.norm(la.minus(cp_loc, self.crystal.loc)[:2]) < self.crystal.D / 2:
             normal = la.i(la.normalize(la.minus(cp_loc, self.crystal.loc_centre)))
             cpoint = CrystalPoint(loc=cp_loc, n=normal)
-            if not self.ray_on_point_eff(cpoint, la.normalize(cp_loc)):
+            if not self.reflection_point(cpoint, la.normalize(cp_loc)):
                 return False
 
             self.crystal.points.append(cpoint)
-            self.source.count_reached_crystal += 1
+            self.source.photons_reached += 1
 
             return True
         return False
 
-    def ray_on_point_eff(self, point: CrystalPoint, ray: list):
+    def reflection_point(self, point: CrystalPoint, ray: list):
 
         def rock_curve(x):
             return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
+        # def rock_curve(x):
+        #     return self.curveSi.curve(x)
 
-        out_intensity = self.source.intensity_per_photon * rock_curve(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
+        out_intensity = rock_curve(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
 
         if out_intensity != 0:
             self.crystal.count_reflected += 1
@@ -187,21 +165,23 @@ class SetUp:
 
             point.ray_in.append(ray)
             point.ray_out.append(rayout)
-            self.source.total += 1
+            self.source.photons_total += 1
             return True
-        self.source.total += 1
+        self.source.photons_total += 1
         return False
         # if True, shines to the whole crystal surface, if False, shines only to reflecting area
+
+    def ray_on_detector(self,point: CrystalPoint):
 
     def shine_spherically(self):
         for i in range(self.source.number):
             done = False
             while not done:
                 s = [0.5 - random.random() for j in range(3)]
-                self.source.total += 1
+                self.source.photons_total += 1
                 if la.cos(self.direction, s) < m.cos(self.max_angle):
                     continue
-                done = self.reflect_point_eff(la.normalize(s))
+                done = self.reflection_crystal(la.normalize(s))
             self.source.rays.append(la.normalize(s))
 
     def shine(self):
@@ -216,11 +196,11 @@ class SetUp:
 
                 if la.cos(self.direction, s) < m.cos(self.max_angle):
                     continue
-                done = self.reflect_point_eff(la.normalize(s))
+                done = self.reflection_crystal(la.normalize(s))
             self.source.rays.append(la.normalize(s))
 
-        self.source.intensity_per_photon=self.source.intensity*self.solid_angle*self.source.number/(4*m.pi*self.source.total)
-
+        self.source.intensity_per_photon = self.source.intensity * self.solid_angle * self.source.number / (
+            4 * m.pi * self.source.photons_total * self.source.number)
 
     def intensity_for_detector(self):
         self.detector.suma_intensity = 0
@@ -244,7 +224,7 @@ class SetUp:
                 proj_y = la.x(self.detector.uy, la.dot(la.x(s, a), self.detector.uy) - la.dot(self.detector.uy, r))
 
                 if la.norm(proj_x) < self.detector.res and la.norm(proj_y) < self.detector.res:
-                    intensity += la.norm(o)
+                    intensity += la.norm(o) * self.source.intensity_per_photon
 
         return intensity
 
@@ -256,7 +236,7 @@ class SetUp:
             for j in i:
                 maximum.append(j.intensity)
         maximum.sort()
-        print('Maximal intensity {}'.format(maximum[-1]))
+        # print('Maximal intensity {}'.format(maximum[-1]))
 
         for i in range(self.detector.nx):
             for j in range(self.detector.ny):
@@ -268,105 +248,73 @@ class SetUp:
         return image
 
     def graph(self):
-        # f = open('name.txt', 'r+')
-        # number = int(f.read())
-        # f.close()
-        image = self.relativize_image()
-        # image = np.ndarray([self.detector.nx, self.detector.ny])
-        #
-        # for i in range(self.detector.nx):
-        #     for j in range(self.detector.ny):
-        #         image[i, j] = self.detector.mesh[i][j].intensity
+        f = open('name.txt', 'r+')
+        number = int(f.read())
+        f.close()
+        # image = self.relativize_image()
+        image = np.ndarray([self.detector.nx, self.detector.ny])
+
+        for i in range(self.detector.nx):
+            for j in range(self.detector.ny):
+                image[i, j] = self.detector.mesh[i][j].intensity
         # if image[i, j] != 0:
         #     print(image[i, j])
 
-        number = time.gmtime()
         misc.imsave(
-            'images/detector{:02d}{:02d}{:02d}{:02d}{:02d}.tiff'.format(number.tm_mon, number.tm_mday, number.tm_hour,
-                                                                        number.tm_min, number.tm_sec), image, 'tiff')
+            'images/{}.tiff'.format(number), image, 'tiff')
 
-    # def solid_angle(self, number):
-    #     suma = 0
-    #     for i in range(number):
-    #         vec = [
-    #             (0.5 - random.random()),
-    #             (0.5 - random.random()),
-    #             (0.5 - random.random())
-    #         ]
-    #         for r in self.source.rays:
-    #             if la.cos(vec, r) > 0.999:
-    #                 suma += 1
-    #                 break
-    #     print('{}/{}=>{}'.format(suma, number, suma / number))
-    #     return suma / number
+        text_info = '''
+###################################\n
+{}.txt\n
+---------------------------------\n
+Crystal: d={} D={} r={} loc={}\n
+Source: wavelength={}, intensity={}, number={}\n
+Detector: dim={}, loc={}, res={}\n
+---------------------------------\n
+Detector intensity: {}\n
+Photon fraction on detector: {}\n
+Photons on crystal {}\n
+Photons reflected{}\n
 
-    # def solid_angle_area(self):
-    #     def nearest(a, vectors):
-    #         min_norm = la.norm(la.minus(a, vectors[0]))
-    #         min_vec = vectors[0]
-    #         for a in vectors:
-    #             if 0 < la.norm(la.minus(a, a)) < min_norm:
-    #                 min_norm = la.norm(la.minus(a, a))
-    #                 min_vec = a
-    #         return min_vec
-    #
-    #     def abc(k, l, m):
-    #         return la.minus(m, k), la.minus(l, m), la.minus(k, l)
-    #
-    #     area = 0
-    #     triangles = list()
-    #     mesh = self.source.rays
-    #     o = mesh[0]
-    #     mesh.remove(o)
-    #     p = nearest(o, mesh)
-    #     mesh.remove(p)
-    #     q = nearest(p, mesh)
-    #     mesh.remove(q)
-    #     for i in range(self.source.number - 3):
-    #         a, b, c = abc(o, p, q)
-    #         triangles.append([o[1:], p[1:], q[1:]])
-    #         area += la.area(a, b)
-    #
-    #         o = p
-    #         p = q
-    #         q = nearest(p, mesh)
-    #         mesh.remove(q)
-    #     else:
-    #         a, b, c = abc(o, p, q)
-    #         area += la.area(a, b)
-    #
-    #     print(area)
-    #     print(area / (4 * m.pi))
-    #
-    #     fig, ax = plt.subplots()
-    #     patches = []
-    #     N = 5
-    #     for triangle in triangles:
-    #         # tri = [la.minustwo(t, triangles[0][0]) for t in triangle]
-    #
-    #         np_tri = np.array([la.x(la.minustwo(t, triangles[0][0]),100) for t in triangle])
-    #         poly = Polygon(np_tri, True)
-    #         patches.append(poly)
-    #
-    #     ax.set_xlim([-1, 0.6])
-    #     ax.set_ylim([-0.06, 0.1])
-    #     p = PatchCollection(patches, cmap=matplotlib.cm.jet, alpha=0.4)
-    #
-    #     colors = 100 * np.random.rand(len(patches))
-    #     p.set_array(np.array(colors))
-    #
-    #     ax.add_collection(p)
-    #
-    #     fig.savefig('display/triangles.png', dpi=200)
-    #     return area
+        '''.format(
+            number,
+            self.crystal.d,
+            self.crystal.D,
+            self.crystal.r,
+            self.crystal.loc,
+            self.source.wl,
+            self.source.intensity,
+            self.source.number,
+            self.detector.dim,
+            self.detector.loc,
+            self.detector.res,
+            self.detector.suma_intensity,
+            self.detector.suma_intensity / self.source.intensity,
+            self.source.photons_reached,
+            self.crystal.count_reflected
+        )
+        info = open('info.txt', 'a')
+        info.write(text_info)
+        info.close()
+
+        f = open('name.txt', 'w')
+        f.write(str(number + 1))
+        f.close()
 
     def statistics(self):
         print('--------------------\nStatisitcs')
-        print('Total photon intensity: {}'.format(self.detector.suma_intensity))
-        print('Photon fraction: {}'.format(
-            self.detector.suma_intensity * self.solid_angle * self.source.number / (self.source.intensity*self.source.total)))
-        print('Photon fraction: {}'.format(
-            self.detector.suma_intensity
+        print('Detector intensity: {}'.format(self.detector.suma_intensity))
+        print('Photon fraction on detector: {}'.format(
+            self.detector.suma_intensity / self.source.intensity
+        ))
 
-        print('Photons on crystal {}'.format(self.source.count_reached_crystal))
-        print('Photons reflected {}'.format(self.crystal.count_reflected))
+    def work(self):
+        t = time.time()
+
+        self.shine()
+        print('Shine effectively: {}s'.format(time.time() - t))
+        # print('All photons to crystal: {}'.format(s.total))
+        self.intensity_for_detector()
+        print('Detector: {}s'.format(int(time.time() - t)))
+        self.graph()
+        self.statistics()

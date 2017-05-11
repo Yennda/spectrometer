@@ -83,41 +83,18 @@ def display_ref(c: Crystal):
     fig.savefig('display/graph_crystal.png', dpi=200, bbox_inches='tight')
 
 
-print('Beginning')
+# c = Crystal(d=3.84031/2, D=5, r=30, loc=[0, 5, 80])
+# s = Source(wavelength=1.91, intensity=1000, number=20)
+# d = Detector(dim=[2, 10], loc=[0, 8.2, 80 - 20], res=200)
+# d.rotate([0, 60, 0], 'd')
 
 c = Crystal(d=2.3, D=5, r=30, loc=[0, 5, 80])
-s = Source(wavelength=2.290, intensity=1000, number=100)
-d = Detector(dim=[10, 10], loc=[0, 5, 40], res=500)
-# d.rotate([0, 60, 0], 'd')
+s = Source(wavelength=2.290, intensity=1000, number=70)
+d = Detector(dim=[2, 10], loc=[0, 5, 80 - 20], res=200)
 
 setup = SetUp(source=s, crystal=c, detector=d)
 
-t = time.time()
-
-setup.shine()
-print('Shine effectively: {}s'.format(time.time() - t))
-print('All photons to crystal: {}'.format(s.total))
-setup.intensity_for_detector()
-print('Detector: {}s'.format(int(time.time() - t)))
-
-setup.graph()
-setup.statistics()
-
-# x = [r.loc[0] for r in c.points if r.ray_out != []]
-# y = [r.loc[1] for r in c.points if r.ray_out != []]
-x0 = [r[0] for r in s.rays]
-y0 = [r[2] for r in s.rays]
-
-fig = plt.figure(figsize=(6, 6))
-ax = fig.add_axes([0.2, 0.2, 0.7, 0.7])
-ax.scatter(x0, y0, linewidth=1, color='green')
-# ax.scatter(x, y, linewidth=1, color='red')
-# ax.set_xlim([0, 50])
-# ax.set_ylim([-20, 30])
-# ax.set_xlim([-2, 2])
-# ax.set_ylim([-2, 2])
-ax.grid(True)
-fig.savefig('display/graph.png', dpi=200, bbox_inches='tight')
+setup.work()
 
 display_ref(c)
 display(setup)

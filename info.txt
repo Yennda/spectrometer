@@ -1,0 +1,249 @@
+
+###################################
+
+0.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=20
+
+Detector: dim=[10, 10], loc=[0, 5, 61.54675451861023], res=0.1
+
+---------------------------------
+
+Detector intensity: 0.0018223584599705205
+
+Photon fraction on detector: 1.8223584599705205e-06
+
+        
+        
+###################################
+
+1.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=200
+
+Detector: dim=[10, 10], loc=[0, 5, 61.54675451861023], res=0.05
+
+---------------------------------
+
+Detector intensity: 0.0016992489357782281
+
+Photon fraction on detector: 1.6992489357782282e-06
+
+        
+        
+###################################
+
+2.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=50
+
+Detector: dim=[10, 10], loc=[0, 5, 61.54675451861023], res=0.1
+
+---------------------------------
+
+Detector intensity: 0.001614094944800228
+
+Photon fraction on detector: 1.614094944800228e-06
+
+        
+        
+###################################
+
+3.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=50
+
+Detector: dim=[10, 10], loc=[0, 5, 61.54675451861023], res=0.1
+
+---------------------------------
+
+Detector intensity: 0.001142041499600222
+
+Photon fraction on detector: 1.142041499600222e-06
+
+        
+        
+###################################
+
+4.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=200
+
+Detector: dim=[10, 2], loc=[0, 5, 61.54675451861023], res=0.05
+
+---------------------------------
+
+Detector intensity: 0
+
+Photon fraction on detector: 0.0
+
+Photons on crystal 200
+
+Photons reflected200
+
+
+        
+###################################
+
+5.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=200
+
+Detector: dim=[2, 10], loc=[0, 5, 61.54675451861023], res=0.05
+
+---------------------------------
+
+Detector intensity: 0.0016296501540920233
+
+Photon fraction on detector: 1.6296501540920232e-06
+
+Photons on crystal 200
+
+Photons reflected200
+
+
+        
+###################################
+
+6.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=200
+
+Detector: dim=[2, 10], loc=[0, 5, 61.54675451861023], res=0.02
+
+---------------------------------
+
+Detector intensity: 0.001317164682250006
+
+Photon fraction on detector: 1.317164682250006e-06
+
+Photons on crystal 200
+
+Photons reflected200
+
+
+        
+###################################
+
+7.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=200
+
+Detector: dim=[2, 10], loc=[0, 5, 60], res=0.02
+
+---------------------------------
+
+Detector intensity: 0.0013710133559404608
+
+Photon fraction on detector: 1.3710133559404608e-06
+
+Photons on crystal 200
+
+Photons reflected200
+
+
+        
+###################################
+
+8.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=200
+
+Detector: dim=[2, 10], loc=[0, 5, 60], res=0.02
+
+---------------------------------
+
+Detector intensity: 0.0010407113267113135
+
+Photon fraction on detector: 1.0407113267113135e-06
+
+Photons on crystal 200
+
+Photons reflected200
+
+
+        
+###################################
+
+9.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=200
+
+Detector: dim=[2, 10], loc=[0, 5, 60], res=0.02
+
+---------------------------------
+
+Detector intensity: 0.0013293647144155824
+
+Photon fraction on detector: 1.3293647144155824e-06
+
+Photons on crystal 200
+
+Photons reflected200
+
+
+        
+###################################
+
+10.txt
+
+---------------------------------
+
+Crystal: d=2.3 D=5 r=30 loc=[0, 5, 80]
+
+Source: wavelength=2.29, intensity=1000, number=70
+
+Detector: dim=[2, 10], loc=[0, 5, 60], res=0.02
+
+---------------------------------
+
+Detector intensity: 0.0013894538621915602
+
+Photon fraction on detector: 1.3894538621915602e-06
+
+Photons on crystal 70
+
+Photons reflected70
+
+
+        
