@@ -89,9 +89,9 @@ def display_ref(c: Crystal):
 # d.rotate([0, 60, 0], 'd')
 
 c = Crystal(d=2.3, D=5, r=30, loc=[0, 5, 80])
-s = Source(wavelength=2.290, intensity=1000, number=70)
-d = Detector(dim=[2, 10], loc=[0, 5, 80 - 20], res=200)
-
+s = Source(wavelength=2.290, intensity=1000, number=20000)
+d = Detector(dim=[1, 1], loc=[0, 5, 80 - 20], res=20)
+print('detector prepared')
 setup = SetUp(source=s, crystal=c, detector=d)
 
 setup.work()

@@ -38,7 +38,7 @@ class Detector:
     def generate_mesh(self):
         n = [0, 0, 1]
 
-        mesh = [[i for i in range(self.ny)] for i in range(self.nx)]
+        mesh = [[j for j in range(self.ny)] for i in range(self.nx)]
 
         for i in range(self.nx):
             for j in range(self.ny):
@@ -154,6 +154,7 @@ class SetUp:
 
         def rock_curve(x):
             return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
+
         # def rock_curve(x):
         #     return self.curveSi.curve(x)
 
@@ -165,13 +166,31 @@ class SetUp:
 
             point.ray_in.append(ray)
             point.ray_out.append(rayout)
+
+            self.detect(point)
+
             self.source.photons_total += 1
             return True
         self.source.photons_total += 1
         return False
         # if True, shines to the whole crystal surface, if False, shines only to reflecting area
 
-    def ray_on_detector(self,point: CrystalPoint):
+    def detect(self, point: CrystalPoint):
+        r = np.matrix(la.minus(self.detector.loc, point.loc))
+        for o in point.ray_out:
+            A = np.matrix([
+                la.normalize(o),
+                self.detector.ux,
+                self.detector.uy
+            ]).T
+            coeff = A.I * r.T
+            i = -int(coeff[1, 0] // self.detector.res + self.detector.nx / 2)
+            j = -int(coeff[2, 0] // self.detector.res + self.detector.ny / 2)
+            # print(i)
+            # print(j)
+            # print(self.detector.nx,self.detector.ny)
+            if m.fabs(i) < self.detector.nx and m.fabs(j) < self.detector.ny:
+                self.detector.mesh[i][j].intensity += la.norm(o)
 
     def shine_spherically(self):
         for i in range(self.source.number):
@@ -201,6 +220,12 @@ class SetUp:
 
         self.source.intensity_per_photon = self.source.intensity * self.solid_angle * self.source.number / (
             4 * m.pi * self.source.photons_total * self.source.number)
+
+    def detector_analysis(self):
+        for i in range(self.detector.nx):
+            for j in range(self.detector.ny):
+                self.detector.mesh[i][j].intensity *= self.source.intensity_per_photon
+                self.detector.suma_intensity += self.detector.mesh[i][j].intensity
 
     def intensity_for_detector(self):
         self.detector.suma_intensity = 0
@@ -312,9 +337,9 @@ Photons reflected{}\n
         t = time.time()
 
         self.shine()
-        print('Shine effectively: {}s'.format(time.time() - t))
+        print('Elapsed time: {}s'.format(time.time() - t))
+        self.detector_analysis()
         # print('All photons to crystal: {}'.format(s.total))
-        self.intensity_for_detector()
-        print('Detector: {}s'.format(int(time.time() - t)))
+
         self.graph()
         self.statistics()
