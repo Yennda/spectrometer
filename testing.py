@@ -8,7 +8,6 @@ import time
 import timeit
 
 from tracing import *
-import winsound
 
 
 def display(setup: SetUp):
@@ -83,20 +82,30 @@ def display_ref(c: Crystal):
     fig.savefig('display/graph_crystal.png', dpi=200, bbox_inches='tight')
 
 
-# c = Crystal(d=3.84031/2, D=5, r=30, loc=[0, 5, 80])
-# s = Source(wavelength=1.91, intensity=1000, number=20)
-# d = Detector(dim=[2, 10], loc=[0, 8.2, 80 - 20], res=200)
+
+
+
+
+
+t = time.time()
+
+c = Crystal(d=3.84031 / 2, D=5, r=30, loc=[0, 15.4, 80])
+s = Source(wavelength=1.91, intensity=1000, number=50000)
+d = Detector(dim=[0.1, 0.1], loc=[0, 18.9, 80 - 18.72], res=1)
+
+
+
+print(d.mesh[0][0].loc)
 # d.rotate([0, 60, 0], 'd')
 
-c = Crystal(d=2.3, D=5, r=30, loc=[0, 5, 80])
-s = Source(wavelength=2.290, intensity=1000, number=20000)
-d = Detector(dim=[1, 1], loc=[0, 5, 80 - 20], res=20)
-print('detector prepared')
-setup = SetUp(source=s, crystal=c, detector=d)
+# c = Crystal(d=2.3, D=5, r=30, loc=[0, 5, 80])
+# s = Source(wavelength=2.290, intensity=1000, number=20000)
+# d = Detector(dim=[1, 1], loc=[0, 5, 80 - 20], res=20)
 
+print('detector prepared: {}s'.format(int(time.time() - t)))
+setup = SetUp(source=s, crystal=c, detector=d)
+print('computed a\'={}'.format(setup.imaging_equation()))
 setup.work()
 
-display_ref(c)
-display(setup)
-
-# winsound.Beep(440, 1000)
+# display_ref(c)
+# display(setup)

@@ -31,19 +31,17 @@ class Detector:
         self.ny = int(self.dim[1] / self.res)
 
         self.n, self.mesh = self.generate_mesh()
-        self.translate(self.loc)
-
         self.suma_intensity = 0
 
     def generate_mesh(self):
         n = [0, 0, 1]
-
         mesh = [[j for j in range(self.ny)] for i in range(self.nx)]
 
         for i in range(self.nx):
             for j in range(self.ny):
                 mesh[i][j] = DetectorPoint(
-                    la.x([i - self.nx / 2, j - self.ny / 2, 0], self.res)
+                    [(i - self.nx / 2) * self.res + self.loc[0], (j - self.ny / 2) * self.res + self.loc[1],
+                     self.loc[2]]
                 )
         return n, mesh
 
@@ -130,7 +128,8 @@ class SetUp:
         self.solid_angle = (m.pi * self.crystal.D ** 2 / 4 * calpha * cbeta) / (
             4 * m.pi * la.norm(self.crystal.loc) ** 2)
 
-        print('Bragg angle: {:.4f}°'.format(tl.deg_from_rad(self.bragg)))
+        # print('Bragg angle: {:.4f}°'.format(tl.deg_from_rad(self.bragg)))
+        # print('Bragg angle: {:.4f}°'.format(self.bragg))
 
     def reflection_crystal(self, s):
         cp_loc = la.x(s, tl.qroot(
@@ -152,13 +151,16 @@ class SetUp:
 
     def reflection_point(self, point: CrystalPoint, ray: list):
 
-        def rock_curve(x):
-            return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
-
         # def rock_curve(x):
-        #     return self.curveSi.curve(x)
+        #     return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
+
+        def rock_curve(x):
+            return self.curveSi.curve(x)
 
         out_intensity = rock_curve(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
+
+        # print(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
+        # print(out_intensity)
 
         if out_intensity != 0:
             self.crystal.count_reflected += 1
@@ -184,12 +186,10 @@ class SetUp:
                 self.detector.uy
             ]).T
             coeff = A.I * r.T
-            i = -int(coeff[1, 0] // self.detector.res + self.detector.nx / 2)
-            j = -int(coeff[2, 0] // self.detector.res + self.detector.ny / 2)
-            # print(i)
-            # print(j)
-            # print(self.detector.nx,self.detector.ny)
-            if m.fabs(i) < self.detector.nx and m.fabs(j) < self.detector.ny:
+            i = int(coeff[1, 0] // self.detector.res + self.detector.nx / 2)
+            j = int(coeff[2, 0] // self.detector.res + self.detector.ny / 2)
+            # print('{},{}'.format(i,j))
+            if 0 <= i < self.detector.nx and 0 <= j < self.detector.ny:
                 self.detector.mesh[i][j].intensity += la.norm(o)
 
     def shine_spherically(self):
@@ -292,14 +292,14 @@ class SetUp:
 ###################################\n
 {}.txt\n
 ---------------------------------\n
-Crystal: d={} D={} r={} loc={}\n
-Source: wavelength={}, intensity={}, number={}\n
-Detector: dim={}, loc={}, res={}\n
+c = Crystal(d={}, D={}, r={}, loc={})\n
+s = Source(wavelength={}, intensity={}, number={})\n
+d = Detector(dim={}, loc={}, res={})\n
 ---------------------------------\n
 Detector intensity: {}\n
 Photon fraction on detector: {}\n
 Photons on crystal {}\n
-Photons reflected{}\n
+Photons reflected {}\n
 
         '''.format(
             number,
@@ -312,7 +312,7 @@ Photons reflected{}\n
             self.source.number,
             self.detector.dim,
             self.detector.loc,
-            self.detector.res,
+            self.detector.res*1e4,
             self.detector.suma_intensity,
             self.detector.suma_intensity / self.source.intensity,
             self.source.photons_reached,
@@ -333,9 +333,11 @@ Photons reflected{}\n
             self.detector.suma_intensity / self.source.intensity
         ))
 
+    def imaging_equation(self):
+        return 1 / (1 / (self.crystal.r/2) - 1 / la.norm(self.crystal.loc))
+
     def work(self):
         t = time.time()
-
         self.shine()
         print('Elapsed time: {}s'.format(time.time() - t))
         self.detector_analysis()

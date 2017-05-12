@@ -1,7 +1,7 @@
 import timeit
 import numpy as np
 from algebra import la
-from tracing import Tools
+from tools import Tools
 
 def test_add():
     a = [1.2, 2.04, 3.7]
@@ -26,6 +26,8 @@ def test_sp():
         s += a[i] * b[i]
     return s
 
+def rock_curve(x):
+    return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
 
 print('add')
 print('array')
@@ -82,10 +84,12 @@ print('dict')
 print(timeit.timeit('dp["loc"]', setup='dp={"loc":[2.2,6.7,7.8]}',
                     number=10000))
 
+print('rocking_curves')
+print('gauss')
+print(timeit.timeit('tl.gauss(1.383, mi=1.382543, s=0.0014544410433286077 / 3)',
+                    setup='from tools import Tools as tl', number=10000))
+print('FILE')
+print(timeit.timeit('curveSi.curve(1.383)', setup='from curves import Curves;curveSi = Curves("reflectivity.csv")',
+                    number=10000))
+
 print('########################')
-
-print(la.dotmv([[1.4, 2.7, 3], [4.3, 5.8, 6.4], [7.3, 8.3, 9.7]], [2.6, 3.2, 6.5]))
-
-print(np.matrix([1.2, 2.04, 3.7]) * np.matrix([4.5, 3.2, 7.8]).T)
-
-print(Tools.rotate([1,0,0],[0,0,0.5],'r'))

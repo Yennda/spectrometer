@@ -1,11 +1,14 @@
 import numpy as np
 import math as m
+from tools import Tools as tl
 
 
 class Curves:
     def __init__(self, file):
-        self.lfc = [[l[0] / 3600 + 79.1920, l[1]] for l in
+        self.lfc = [[tl.rad_from_deg(l[0] / 3600 + 79.1920), l[1]] for l in
                     self.list_from_csv(file)]
+        # print(self.lfc[0][0])
+        # print(self.lfc[-1][0])
 
     def list_from_csv(self, file):
         file = open(file, 'r')
@@ -16,7 +19,7 @@ class Curves:
         return final
 
     def curve(self, x):
-        if not self.lfc[0][0] < x < self.lfce[-1][0]:
+        if not self.lfc[0][0] < x < self.lfc[-1][0]:
             return 0
         for i in range(len(self.lfc)):
             if self.lfc[i][0] > x:
