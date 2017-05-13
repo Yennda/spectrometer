@@ -249,11 +249,12 @@ class SetUp:
         number = int(f.read())
         f.close()
         # image = self.relativize_image()
-        image = np.ndarray([self.detector.nx, self.detector.ny])
+        image = np.ndarray([self.detector.ny, self.detector.nx])
 
         for i in range(self.detector.nx):
             for j in range(self.detector.ny):
-                image[i, j] = self.detector.mesh[i][j].intensity
+                image[j,i] = self.detector.mesh[i][j].intensity
+
 
         misc.imsave('images/{}.tiff'.format(number), image, 'tiff')
 

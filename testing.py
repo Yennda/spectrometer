@@ -109,20 +109,19 @@ t = time.time()
 # setup = simple_point_source(c, s, d, 30)
 # setup.work()
 
-c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
-s = Source(loc=[0, 0, 0], wavelength=1.91, intensity=1000, number=1000)
-# d = Detector(dim=[1, 1], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=20)
-d = Detector(dim=[1, 2], loc=[11.258935829952932, 0.0, 2], res=20)
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 1, 30])
+s = Source(loc=[0, 0, 0], wavelength=1.91, intensity=1000, number=5000)
+d = Detector(dim=[1, 1], loc=[11.258935829952932, 2, 0], res=5)
 setup = SetUp(source=s, crystal=c, detector=d)
-
 setup.work()
-# for i in range(-5,20):
-#     d = Detector(dim=[1, 1], loc=[11.258935829952932, 0.0, i/10], res=20)
+
+# for i in range(-100,150,5):
+#     d = Detector(dim=[1, 1], loc=[11.258935829952932, 0.0, i/100], res=20)
 #     setup = SetUp(source=s, crystal=c, detector=d)
 #     setup.work()
 
 
-# display_ref(c)
+display_ref(c)
 # display(setup)
 
 print('Elapsed time: {}s'.format(int(time.time()-t)))
