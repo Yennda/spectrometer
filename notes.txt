@@ -56,3 +56,6 @@ Statisitcs
 Photon on crystal crystal 3000
 Photons reflected 248
 Elapsed time: 584.7461340427399
+
+Crystal: [5.729405277623609, 0, 30]
+Detector: [322.7371858526927, 0.0, -1629.898882418847]

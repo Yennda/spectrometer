@@ -78,3 +78,7 @@ class Tools:
             x1 = (-b + D ** 0.5) / (2 * a)
             x2 = (-b - D ** 0.5) / (2 * a)
             return x1
+
+    @staticmethod
+    def imaging_equation(f, a):
+        return 1 / (1 / f - 1 / a)

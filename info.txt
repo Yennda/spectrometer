@@ -4322,3 +4322,2916 @@ Photons on crystal 5000
 Photons reflected 5000
 
         
+###################################
+228.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 1, 30])
+s = Source(loc=[0, 0.1, 0], wavelength=1.91, intensity=1000, number=5000)
+d = Detector(dim=[1, 1], loc=[11.258935829952932, 2, 0], res=5.0)
+---------------------------------
+Detector intensity: 0.009399951377327435
+Photon fraction on detector: 9.399951377327436e-06
+Photons on crystal 5000
+Photons reflected 10000
+
+        
+###################################
+229.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[0, 15.4, 80])
+d = Detector(dim=[5, 5], loc=[0, 18.9, 61.28], res=50.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+230.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[1, 1], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=20.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+231.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+232.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+233.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+234.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+235.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+236.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+237.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+238.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+239.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+240.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+241.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 107.89186656605371
+Photon fraction on detector: 0.1078918665660537
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+242.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+243.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+244.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[10, 10], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=100.0)
+---------------------------------
+Detector intensity: 0.0077239382595015935
+Photon fraction on detector: 7.723938259501594e-06
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+245.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[1, 1], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=10.0)
+---------------------------------
+Detector intensity: 0.008341776667509834
+Photon fraction on detector: 8.341776667509835e-06
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+246.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[1, 1], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=20.0)
+---------------------------------
+Detector intensity: 0.008127676532790415
+Photon fraction on detector: 8.127676532790415e-06
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+247.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[5.729405277623609, 0, 30])
+d = Detector(dim=[1, 1], loc=[11.258935829952932, 0.0, 1.0465731552011377], res=20.0)
+---------------------------------
+Detector intensity: 0.015165926935364277
+Photon fraction on detector: 3.791481733841069e-06
+Photons on crystal 4000
+Photons reflected 4000
+
+        
+###################################
+248.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[8.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[11.289272339933632, 0.0, 0.8877267731908809], res=20.0)
+---------------------------------
+Detector intensity: 0.0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+249.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[8.639207036831479, 0, 40])
+d = Detector(dim=[5, 5], loc=[11.289272339933632, 0.0, 0.8877267731908809], res=20.0)
+---------------------------------
+Detector intensity: 0.0
+Photon fraction on detector: 0.0
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+250.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[8.639207036831479, 0, 40])
+d = Detector(dim=[10, 10], loc=[11.289272339933632, 0.0, 0.8877267731908809], res=50.0)
+---------------------------------
+Detector intensity: 0.0006968107028047176
+Photon fraction on detector: 6.968107028047176e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+251.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[8.639207036831479, 0, 40])
+d = Detector(dim=[10, 10], loc=[11.289272339933632, 0.0, 0.8877267731908809], res=50.0)
+---------------------------------
+Detector intensity: 2.7227030513397626e-06
+Photon fraction on detector: 2.7227030513397628e-09
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+252.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[10, 10], loc=[13.081292089237088, 0.0, 16.740596080254644], res=50.0)
+---------------------------------
+Detector intensity: 0.000481213239739275
+Photon fraction on detector: 4.81213239739275e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+253.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[10, 10], loc=[12.09391264740393, 0.0, 16.674513000657548], res=50.0)
+---------------------------------
+Detector intensity: 0.0005012503341619914
+Photon fraction on detector: 5.012503341619915e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+254.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0005553090197240357
+Photon fraction on detector: 5.553090197240357e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+255.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 17.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0005550998295287152
+Photon fraction on detector: 5.550998295287152e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+256.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0005652862027291224
+Photon fraction on detector: 5.652862027291224e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+257.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.9], res=5.0)
+---------------------------------
+Detector intensity: 0.0005620785881973755
+Photon fraction on detector: 5.620785881973755e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+258.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.9], res=5.0)
+---------------------------------
+Detector intensity: 0.0005600284058484932
+Photon fraction on detector: 5.600284058484932e-07
+Photons on crystal 100000
+Photons reflected 100000
+
+        
+###################################
+259.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.9], res=5.0)
+---------------------------------
+Detector intensity: 0.005606280034026913
+Photon fraction on detector: 5.606280034026913e-07
+Photons on crystal 10000
+Photons reflected 10000
+
+        
+###################################
+260.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.9], res=5.0)
+---------------------------------
+Detector intensity: 0.0051571399885526675
+Photon fraction on detector: 5.157139988552668e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+261.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.006092884821411227
+Photon fraction on detector: 6.092884821411228e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+262.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0059369274230234295
+Photon fraction on detector: 5.93692742302343e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+263.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0057874151281659385
+Photon fraction on detector: 5.787415128165939e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+264.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.005499035062067274
+Photon fraction on detector: 5.499035062067274e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+265.txt
+---------------------------------
+c = Crystal(d=1.920155, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.005798969594483242
+Photon fraction on detector: 5.798969594483242e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+266.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.005613065614945932
+Photon fraction on detector: 5.613065614945932e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+267.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.00554005944873225
+Photon fraction on detector: 5.54005944873225e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+268.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0005635932137366412
+Photon fraction on detector: 5.635932137366412e-07
+Photons on crystal 20000
+Photons reflected 20000
+
+        
+###################################
+269.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.000585954492451203
+Photon fraction on detector: 5.859544924512031e-07
+Photons on crystal 1000
+Photons reflected 1000
+
+        
+###################################
+270.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0007102805342147731
+Photon fraction on detector: 7.10280534214773e-07
+Photons on crystal 43
+Photons reflected 43
+
+        
+###################################
+271.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0005808985045585561
+Photon fraction on detector: 5.808985045585561e-07
+Photons on crystal 518
+Photons reflected 518
+
+        
+###################################
+272.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 16.674513000657548], res=5.0)
+---------------------------------
+Detector intensity: 0.0005636552895929901
+Photon fraction on detector: 5.636552895929901e-07
+Photons on crystal 10000
+Photons reflected 10000
+
+        
+###################################
+273.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=5.0)
+---------------------------------
+Detector intensity: 0.0005501609765841637
+Photon fraction on detector: 5.501609765841637e-07
+Photons on crystal 10000
+Photons reflected 10000
+
+        
+###################################
+274.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=50.0)
+---------------------------------
+Detector intensity: 0.0005594562827892737
+Photon fraction on detector: 5.594562827892737e-07
+Photons on crystal 50000
+Photons reflected 50000
+
+        
+###################################
+275.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=50.0)
+---------------------------------
+Detector intensity: 0.0005733777387112404
+Photon fraction on detector: 5.733777387112405e-07
+Photons on crystal 5000
+Photons reflected 5000
+
+        
+###################################
+276.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.0005761224851239399
+Photon fraction on detector: 5.761224851239399e-07
+Photons on crystal 5000
+Photons reflected 5000
+
+        
+###################################
+277.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.0005675526730331257
+Photon fraction on detector: 5.675526730331257e-07
+Photons on crystal 2000
+Photons reflected 2000
+
+        
+###################################
+278.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.0006324160389085398
+Photon fraction on detector: 6.324160389085398e-07
+Photons on crystal 2000
+Photons reflected 2000
+
+        
+###################################
+279.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.0005187788436688284
+Photon fraction on detector: 5.187788436688284e-07
+Photons on crystal 2000
+Photons reflected 2000
+
+        
+###################################
+280.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.0005409921760665546
+Photon fraction on detector: 5.409921760665545e-07
+Photons on crystal 2000
+Photons reflected 2000
+
+        
+###################################
+281.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.0005733363957465386
+Photon fraction on detector: 5.733363957465386e-07
+Photons on crystal 2000
+Photons reflected 2000
+
+        
+###################################
+282.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.00056054412735294
+Photon fraction on detector: 5.605441273529399e-07
+Photons on crystal 2000
+Photons reflected 2000
+
+        
+###################################
+283.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.0005342730993308946
+Photon fraction on detector: 5.342730993308945e-07
+Photons on crystal 2000
+Photons reflected 2000
+
+        
+###################################
+284.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+---------------------------------
+Detector intensity: 0.0005623793313051172
+Photon fraction on detector: 5.623793313051172e-07
+Photons on crystal 2000
+Photons reflected 2000
+
+        
+###################################
+285.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+
+
+        
+Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=2000)
+            
+            
+---------------------------------
+Detector intensity: 0.0005249059744745899
+Photon fraction on detector: 5.249059744745899e-07
+Photons on crystal 2000
+Photons reflected 2000
+        
+###################################
+286.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=10.0)
+
+
+        
+Source(loc=[0.0, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.0, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.005000000000000001, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.010000000000000002, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.015, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.020000000000000004, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.025, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.03, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.034999999999999996, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.04000000000000001, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.015, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.025, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.03, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+Source(loc=[0.045000000000000005, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+---------------------------------
+Detector intensity: 0.05590942378153449
+Photon fraction on detector: 5.590942378153449e-07
+Photons on crystal 20000
+Photons reflected 20000
+        
+###################################
+287.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=5.0)
+
+
+        
+Source(loc=[0.0, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+---------------------------------
+Detector intensity: 0.054992160594296756
+Photon fraction on detector: 5.499216059429675e-07
+Photons on crystal 50000
+Photons reflected 50000
+        
+###################################
+288.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=5.0)
+
+
+        
+Source(loc=[0.0, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.0, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.0, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.05, 0.05, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+---------------------------------
+Detector intensity: 0.06839564964119553
+Photon fraction on detector: 5.652533028197978e-07
+Photons on crystal 60500
+Photons reflected 60500
+        
+###################################
+289.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=5.0)
+
+
+        
+Source(loc=[0.004545454545454546, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004545454545454546, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004545454545454546, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004545454545454546, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009090909090909092, 0.009090909090909092, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009090909090909092, 0.013636363636363636, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009090909090909092, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009090909090909092, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009090909090909092, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009090909090909092, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009090909090909092, 0.03636363636363637, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009090909090909092, 0.040909090909090916, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.013636363636363636, 0.009090909090909092, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.013636363636363636, 0.013636363636363636, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.013636363636363636, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.013636363636363636, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.013636363636363636, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.013636363636363636, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.013636363636363636, 0.03636363636363637, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.013636363636363636, 0.040909090909090916, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.004545454545454546, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.009090909090909092, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.013636363636363636, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.03636363636363637, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.040909090909090916, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.018181818181818184, 0.045454545454545456, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.004545454545454546, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.009090909090909092, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.013636363636363636, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.03636363636363637, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.040909090909090916, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.022727272727272728, 0.045454545454545456, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.004545454545454546, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.009090909090909092, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.013636363636363636, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.03636363636363637, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.040909090909090916, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.02727272727272727, 0.045454545454545456, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.004545454545454546, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.009090909090909092, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.013636363636363636, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.03636363636363637, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.040909090909090916, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03181818181818182, 0.045454545454545456, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03636363636363637, 0.009090909090909092, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03636363636363637, 0.013636363636363636, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03636363636363637, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03636363636363637, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03636363636363637, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03636363636363637, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03636363636363637, 0.03636363636363637, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03636363636363637, 0.040909090909090916, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.040909090909090916, 0.009090909090909092, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.040909090909090916, 0.013636363636363636, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.040909090909090916, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.040909090909090916, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.040909090909090916, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.040909090909090916, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.040909090909090916, 0.03636363636363637, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.040909090909090916, 0.040909090909090916, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045454545454545456, 0.018181818181818184, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045454545454545456, 0.022727272727272728, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045454545454545456, 0.02727272727272727, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045454545454545456, 0.03181818181818182, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+---------------------------------
+Detector intensity: 0.045459363653559515
+Photon fraction on detector: 5.68242045669494e-07
+Photons on crystal 40000
+Photons reflected 40000
+        
+###################################
+290.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=5.0)
+
+
+        
+Source(loc=[0.005000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.005000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.005000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.005000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.005000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.010000000000000002, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.010000000000000002, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.010000000000000002, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.010000000000000002, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.010000000000000002, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.010000000000000002, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.010000000000000002, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.015, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.020000000000000004, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.025, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.03, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.034999999999999996, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.04000000000000001, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.04000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.04000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.04000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.04000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.04000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.04000000000000001, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.045000000000000005, 0.015, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.045000000000000005, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.045000000000000005, 0.025, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.045000000000000005, 0.03, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+Source(loc=[0.045000000000000005, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=100)
+            
+            
+---------------------------------
+Detector intensity: 0.03886061921876428
+Photon fraction on detector: 5.63197379982091e-07
+Photons on crystal 6900
+Photons reflected 6900
+        
+###################################
+291.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=5.0)
+
+
+        
+Source(loc=[0.005000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.010000000000000002, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.015, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.020000000000000004, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.025, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.03, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.005000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.034999999999999996, 0.045000000000000005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.010000000000000002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.04000000000000001, 0.04000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.015, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.020000000000000004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.025, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.03, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.045000000000000005, 0.034999999999999996, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+---------------------------------
+Detector intensity: 0.03820699695362836
+Photon fraction on detector: 5.537245935308458e-07
+Photons on crystal 34500
+Photons reflected 34500
+        
+###################################
+292.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.8], res=5.0)
+
+
+        
+Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=2000)
+            
+            
+---------------------------------
+Detector intensity: 0.0005902046468465543
+Photon fraction on detector: 5.902046468465543e-07
+Photons on crystal 2000
+Photons reflected 2000
+        
+###################################
+293.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.7], res=5.0)
+
+
+        
+Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=2000)
+            
+            
+---------------------------------
+Detector intensity: 0.0006007899420039797
+Photon fraction on detector: 6.007899420039798e-07
+Photons on crystal 2000
+Photons reflected 2000
+        
+###################################
+294.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.9], res=5.0)
+
+
+        
+Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=2000)
+            
+            
+---------------------------------
+Detector intensity: 0.0005283956888886157
+Photon fraction on detector: 5.283956888886157e-07
+Photons on crystal 2000
+Photons reflected 2000
+        
+###################################
+295.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.82], res=5.0)
+
+
+        
+Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=200)
+            
+            
+---------------------------------
+Detector intensity: 0.0005770422641505201
+Photon fraction on detector: 5.770422641505201e-07
+Photons on crystal 200
+Photons reflected 200
+        
+###################################
+296.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.82], res=5.0)
+
+
+        
+Source(loc=[0.001, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.001, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.001, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.001, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.001, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.002, 0.002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.002, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.002, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.002, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.002, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.002, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.002, 0.008, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.008, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.003, 0.009000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.008, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.004, 0.009000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.008, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.005, 0.009000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.008, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006, 0.009000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.008, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.006999999999999999, 0.009000000000000001, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.008, 0.002, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.008, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.008, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.008, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.008, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.008, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.008, 0.008, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009000000000000001, 0.003, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009000000000000001, 0.004, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009000000000000001, 0.005, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009000000000000001, 0.006, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+Source(loc=[0.009000000000000001, 0.006999999999999999, 0], wavelength=0.377207, intensity=1000, number=500)
+            
+            
+---------------------------------
+Detector intensity: 0.0391645096159229
+Photon fraction on detector: 5.676015886365638e-07
+Photons on crystal 34500
+Photons reflected 34500
+        
+###################################
+297.txt
+---------------------------------
+c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
+d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.82], res=5.0)
+
+
+        
+Source(loc=[0.007000000000000001, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.007000000000000001, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.007000000000000001, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.007000000000000001, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.007000000000000001, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.014000000000000002, 0.014000000000000002, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.014000000000000002, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.014000000000000002, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.014000000000000002, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.014000000000000002, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.014000000000000002, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.014000000000000002, 0.05600000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.007000000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.014000000000000002, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.05600000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.021, 0.06300000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.007000000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.014000000000000002, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.05600000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.028000000000000004, 0.06300000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.007000000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.014000000000000002, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.05600000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.035, 0.06300000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.007000000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.014000000000000002, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.05600000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.042, 0.06300000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.007000000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.014000000000000002, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.05600000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.049, 0.06300000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.05600000000000001, 0.014000000000000002, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.05600000000000001, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.05600000000000001, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.05600000000000001, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.05600000000000001, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.05600000000000001, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.05600000000000001, 0.05600000000000001, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.06300000000000001, 0.021, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.06300000000000001, 0.028000000000000004, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.06300000000000001, 0.035, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.06300000000000001, 0.042, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+Source(loc=[0.06300000000000001, 0.049, 0], wavelength=0.377207, intensity=1000, number=1000)
+            
+            
+---------------------------------
+Detector intensity: 0.038824385581111016
+Photon fraction on detector: 5.626722547987104e-07
+Photons on crystal 69000
+Photons reflected 69000
+        

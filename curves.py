@@ -30,3 +30,6 @@ class Curves:
             if self.lfc[i][0] > x:
                 return (self.lfc[i][1] - self.lfc[i - 1][1]) * (
                     (x - self.lfc[i - 1][0]) / (self.lfc[i][0] - self.lfc[i - 1][0])) + self.lfc[i - 1][1]
+
+        # def rock_curve(x):
+        #     return tl.gauss(x, mi=self.bragg, s=0.0014544410433286077 / 3)
