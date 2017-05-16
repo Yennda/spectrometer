@@ -129,20 +129,22 @@ def generate_eliptical_source(dim: list, n: int):
         for j in range(n):
             if ((i - n / 2) ** 2 + (j - n / 2) ** 2) < ((n-1) / 2) ** 2:
                 s.append(
-                    Source(loc=[i / n * dim[0], j / n * dim[1], 0], wavelength=0.377207, intensity=1000, number=20))
+                    Source(loc=[i / n * dim[0], j / n * dim[1], 0], wavelength=0.377207, intensity=1000, number=200))
     return s
 
 
 t = time.time()
 
 c = Crystal(d=0.384031, D=5, r=30, loc=[7.639207036831479, 0, 40])
-s = generate_eliptical_source([0.07, 0.07], 30)
+# d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.82], res=5)
 d = Detector(dim=[1, 1], loc=[12.09391264740393, 0.0, 15.82], res=5)
 
 
+s = generate_eliptical_source([0.05, 0.05], 40)
+# s = [Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=1000)]
 display_source(s)
 
-# s = [Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=200)]
+
 
 setup = SetUp(source=s, crystal=c, detector=d)
 setup.work()
@@ -152,4 +154,4 @@ setup.work()
 # display_crystal(c)
 # display(setup)
 
-print('Elapsed time: {}s'.format(int(time.time() - t)))
+print('Final elapsed time: {}s'.format(int(time.time() - t)))

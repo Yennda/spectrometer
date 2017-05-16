@@ -2,16 +2,12 @@ import math as m
 import numpy as np
 import random
 import time
-import copy
 
-from scipy import misc
 from algebra import la
 from tools import Tools as tl
 from curves import Curves
 
 from PIL import Image
-import matplotlib.pyplot as plt
-from skimage import io, exposure, img_as_uint, img_as_float
 
 """
 All the positions and dimensions are in centimetres. Except for the wavelengths and lattice constants, that are in Angstroems.
@@ -30,20 +26,10 @@ class Detector:
         self.nx = int(self.dim[0] / self.res)
         self.ny = int(self.dim[1] / self.res)
 
-        self.n, self.mesh, self.image = self.generate_mesh()
-
-    def generate_mesh(self):
-        n = [0, 0, 1]
-        mesh = [[j for j in range(self.ny)] for i in range(self.nx)]
-        image = [[0 for j in range(self.ny)] for i in range(self.nx)]
-
-        for i in range(self.nx):
-            for j in range(self.ny):
-                mesh[i][j] = DetectorPoint(
-                    [(i - self.nx / 2) * self.res + self.loc[0], (j - self.ny / 2) * self.res + self.loc[1],
-                     self.loc[2]]
-                )
-        return n, mesh, image
+        self.image = [[0 for j in range(self.ny)] for i in range(self.nx)]
+        self.n = [0, 0, 1]
+        self.detected_intensity = list()
+        self.detected_position = list()
 
     @property
     def integral(self):
@@ -52,11 +38,6 @@ class Detector:
             for j in range(self.ny):
                 suma += self.image[i][j]
         return suma
-
-    def translate(self, vector: list):
-        for i in range(self.nx):
-            for j in range(self.ny):
-                self.mesh[i][j].loc = la.plus(self.mesh[i][j].loc, vector)
 
     def rotate(self, angles, u='rad'):
         if u == 'r':
@@ -68,14 +49,6 @@ class Detector:
         self.n = tl.rotate(self.n, angles)
         self.ux = tl.rotate(self.ux, angles)
         self.uy = tl.rotate(self.uy, angles)
-
-        self.translate(la.i(self.loc))
-
-        for i in range(-self.nx // 2, self.nx // 2 + 1):
-            for j in range(-self.ny // 2, self.ny // 2 + 1):
-                self.mesh[i][j].loc = tl.rotate(self.mesh[i][j].loc, angles)
-
-        self.translate(self.loc)
 
 
 class DetectorPoint:
@@ -158,35 +131,39 @@ class SetUp:
         cp_loc = la.plus(cp_loc, source.loc)
         if la.norm(la.minus(cp_loc, self.crystal.loc)[:2]) < self.crystal.D / 2:
             normal = la.i(la.normalize(la.minus(cp_loc, self.crystal.loc_centre)))
-            cpoint = CrystalPoint(loc=cp_loc, n=normal)
-            if not self.reflection_point(cpoint, s):
+
+            if not self.reflection_point(cp_loc, normal, s):
                 source.photons_total += 1
                 return False
+
             source.photons_total += 1
-
-            self.crystal.points.append(cpoint)
-            source.photons_reached += 1
-
             return True
         return False
 
-    def reflection_point(self, point: CrystalPoint, ray: list):
-        def rock_curve(x):
-            return self.curveSi.curve(x)
-
-        out_intensity = rock_curve(m.pi / 2 - m.acos(la.cos(ray, la.i(point.n))))
+    def reflection_point(self, loc, n, ray: list):
+        # self.crystal.points.append(point)
+        out_intensity = self.curveSi.curve(m.pi / 2 - m.acos(la.cos(ray, la.i(n))))
 
         if out_intensity != 0:
             self.crystal.count_reflected += 1
-            rayout = [out_intensity * (-ray[i] + 2 * (point.n[i] + ray[i])) for i in range(3)]
+            o = [out_intensity * (-ray[i] + 2 * (n[i] + ray[i])) for i in range(3)]
 
-            point.ray_in.append(ray)
-            point.ray_out.append(rayout)
+            r = np.matrix(la.minus(self.detector.loc, loc))
+            A = np.matrix([
+                la.normalize(o),
+                self.detector.ux,
+                self.detector.uy
+            ]).T
+            coeff = A.I * r.T
 
-            self.detect(point)
+            i = int(coeff[1, 0] // self.detector.res + self.detector.nx / 2)
+            j = int(coeff[2, 0] // self.detector.res + self.detector.ny / 2)
+
+            if 0 <= i < self.detector.nx and 0 <= j < self.detector.ny:
+                self.detector.detected_intensity.append(la.norm(o))
+                self.detector.detected_position.append([i, j])
             return True
         return False
-        # if True, shines to the whole crystal surface, if False, shines only to reflecting area
 
     def pre_shine(self, source: Source):
         angles = [
@@ -218,11 +195,9 @@ class SetUp:
                 )
 
                 if la.cos(self.direction, s) < m.cos(source.max_angle):
-                    # print('loso')
                     continue
 
                 done = self.reflection_crystal(la.normalize(s), source)
-            source.rays.append(la.normalize(s))
 
         source.intensity_per_photon = source.intensity * source.solid_angle * source.number / (
             4 * m.pi * source.photons_total * source.number)
@@ -236,9 +211,7 @@ class SetUp:
 
                 if la.cos(self.direction, s) < m.cos(source.max_angle):
                     continue
-                # print(s)
-                done = self.reflection_crystal(la.normalize(s), source)
-            source.rays.append(la.normalize(s))
+                self.reflection_crystal(la.normalize(s), source)
 
         source.intensity_per_photon = source.intensity * source.solid_angle * source.number / (
             4 * m.pi * source.photons_total * source.number)
@@ -252,33 +225,41 @@ class SetUp:
                 self.detector.uy
             ]).T
             coeff = A.I * r.T
+
             i = int(coeff[1, 0] // self.detector.res + self.detector.nx / 2)
             j = int(coeff[2, 0] // self.detector.res + self.detector.ny / 2)
-            # print('{},{}'.format(i,j))
+
             if 0 <= i < self.detector.nx and 0 <= j < self.detector.ny:
-                self.detector.mesh[i][j].intensity += la.norm(o)
+                self.detector.detected_intensity.append(la.norm(o))
+                self.detector.detected_position.append([i, j])
 
     def mesh_to_image(self, source):
-        for i in range(self.detector.nx):
-            for j in range(self.detector.ny):
-                self.detector.image[i][j] += self.detector.mesh[i][j].intensity * source.intensity_per_photon
-                self.detector.mesh[i][j].intensity = 0
+        pos = self.detector.detected_position
+        inte = self.detector.detected_intensity
+        for i in range(len(inte)):
+            self.detector.image[pos[i][0]][pos[i][1]] += inte[i] * source.intensity_per_photon
+        pos.clear()
+        inte.clear()
 
     def relativize_image(self):
-        image = np.ndarray([self.detector.nx, self.detector.ny])
+        image = np.ndarray([self.detector.nx, self.detector.ny, 3])
 
         maximum = list()
-        for i in self.detector.mesh:
+        for i in self.detector.image:
             for j in i:
-                maximum.append(j.intensity)
+                maximum.append(j)
         max_int = max(maximum)
 
         if max_int != 0:
             for i in range(self.detector.nx):
                 for j in range(self.detector.ny):
-                    image[i, j] = self.detector.mesh[i][j].intensity / max_int * (2 ** 48 - 1)
+                    image[i, j] = (
+                        int(self.detector.image[i][j] / max_int * 2 ** 24) // 2 ** 16,
+                        int(self.detector.image[i][j] / max_int * 2 ** 24) % 2 ** 16 // 2 ** 8,
+                        int(self.detector.image[i][j] / max_int * 2 ** 24) % 2 ** 16 % 2 ** 8
+                    )
         else:
-            image[i, j] = self.detector.mesh[i][j].intensity
+            image[i, j] = self.detector.image[i][j]
 
         return image
 
@@ -286,14 +267,14 @@ class SetUp:
         f = open('name.txt', 'r+')
         number = int(f.read())
         f.close()
-        # image = self.relativize_image()
         image = np.ndarray([self.detector.ny, self.detector.nx])
 
         for i in range(self.detector.nx):
             for j in range(self.detector.ny):
                 image[j, i] = self.detector.image[i][j]
 
-        misc.imsave('images/{}.tiff'.format(number), image, 'tiff')
+        pilimage = Image.fromarray(self.detector.image)
+        pilimage.save('images/{}.tiff'.format(number))
 
         text_info = '''
 ###################################
@@ -358,16 +339,11 @@ Photons reflected {}
         for s in self.source:
             if self.source.index(s) != 0:
                 print('{}/{}, {}s'.format(self.source.index(s), len(self.source),
-                                          int((time.time() - t) * (len(self.source)/self.source.index(s)-1))))
+                                          int((time.time() - t) * (len(self.source) / self.source.index(s) - 1))))
             if not self.pre_shine(s):
                 continue
             self.shine_random(s)
             self.mesh_to_image(s)
-
-            for i in range(self.detector.nx):
-                for j in range(self.detector.ny):
-                    if self.detector.mesh[i][j].intensity != 0:
-                        print(self.detector.mesh[i][j].intensity)
 
         print('Elapsed time: {}s'.format(time.time() - t))
         # print('All photons to crystal: {}'.format(s.total))
