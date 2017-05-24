@@ -82,3 +82,12 @@ class Tools:
     @staticmethod
     def imaging_equation(f, a):
         return 1 / (1 / f - 1 / a)
+
+    @staticmethod
+    def shoelace(x: list):
+        sum_first = 0
+        sum_second = 0
+        for i in range(len(x)-1):
+            sum_first += x[i][0] * x[i + 1][1]
+            sum_second += x[i + 1][0] * x[i][1]
+        return 0.5 * (sum_first + x[-1][0] * x[0][1] - sum_second - x[0][0] * x[-1][1])
