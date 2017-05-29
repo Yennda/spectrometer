@@ -156,27 +156,16 @@ def generate_square_source(dim: list, n: int):
 
 t = time.time()
 
-# x = [[m.cos(f / 10000 * m.pi * 2), m.sin(f / 10000 * m.pi * 2)] for f in range(10000)]
-# x0 = [s[0] for s in x]
-# y0 = [s[1] for s in x]
-#
-# fig = plt.figure(figsize=(6, 6))
-# ax = fig.add_axes([0.2, 0.2, 0.7, 0.7])
-#
-# ax.plot(x0, y0, linewidth=1, color='green')
-# # ax.set_xlim([c.loc[0] - c.D, c.loc[0] + c.D])
-# # ax.set_ylim([c.loc[1] - c.D, c.loc[1] + c.D])
-# ax.grid(True)
-# fig.savefig('display/graph.png', dpi=200, bbox_inches='tight')
-
-
-# print('Shoelace: {}'.format(tl.shoelace(x)))
 c = Crystal(d=0.384031, D=2.4, r=38, loc=[5.627693772801094, 0, 29.46742375572686])
 
 # s = generate_eliptical_source([0.05, 0.05], 100)
 s = [Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=10000)]
+s2 = [Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=10000)]
 
-d = Detector(dim=[1, 1], loc=[15.367355795595522, 0.0, -23.3], res=5)
+
+# d2 = Detector(dim=[1, 1], loc=[15.367355795595522, 0.1, -23.3], res=5)
+
+d = Detector(dim=[1, 1], loc=[15.367355795595522, 0.0, -21.530864290851103], res=5)
 dm = Detector(dim=[1, 1], loc=[14.891626637551013, 0.0, -19.039877172681177], res=5)
 ds = Detector(dim=[1, 1], loc=[15.842832108508592, 0.0, -24.020527475108953], res=5)
 
@@ -184,6 +173,8 @@ display_source(s)
 
 setup = SetUp(source=s, crystal=c, detector=d)
 setup.work()
+# setup = SetUp(source=s2, crystal=c, detector=d2)
+# setup.work()
 setup = SetUp(source=s, crystal=c, detector=dm)
 setup.work()
 setup = SetUp(source=s, crystal=c, detector=ds)
@@ -191,5 +182,6 @@ setup.work()
 
 
 display_crystal(c)
-adjustment(c, z_dist=30, oq=51.92)
+
+# adjustment(c, z_dist=30, oq=51.92)
 print('Final elapsed time: {}s'.format(int(time.time() - t)))

@@ -53,10 +53,10 @@ class Detector:
         self.uy = tl.rotate(self.uy, angles)
 
 
-class DetectorPoint:
-    def __init__(self, loc):
-        self.loc = loc
-        self.intensity = 0
+# class DetectorPoint:
+#     def __init__(self, loc):
+#         self.loc = loc
+#         self.intensity = 0
 
 
 class Source:
@@ -69,12 +69,13 @@ class Source:
             self.number_list = number
         else:
             self.number = number
-        self.rays = list()
+        # self.rays = list()
         self.intensity_per_photon = None
         self.photons_total = 0
         self.photons_reached = 0
 
         self.max_angle = float()
+        self.direction = float()
         self.solid_angle = float()
 
 
@@ -83,7 +84,7 @@ class Crystal:
         self.d = d
         self.r = r
         self.D = D
-        self.loc_centre = la.minus(loc, [0, 0, r])
+        self.centre = la.minus(loc, [0, 0, (r ** 2 - (D / 2) ** 2) ** 0.5])
         self.loc = loc
         self.points = list()
         self.count_reflected = 0
@@ -99,31 +100,43 @@ class SetUp:
         self.detector = detector
         self.curveSi = Curves('reflectivity.csv')
 
-        # self.bragg = [crystal.bragg_angle(s.wl, 2) for s in source]
-        self.direction = la.normalize(crystal.loc)
-
         for s in self.source:
-            s.max_angle = m.atan(crystal.D / 2 / la.norm(la.minus(crystal.loc, s.loc)))
-            s.max_angle = m.asin(crystal.D / 2 / la.norm(la.minus(crystal.loc, s.loc)))
+            s.direction = la.normalize(la.minus(crystal.loc, s.loc))
 
-            calpha = la.cos([0, self.crystal.loc[1] - s.loc[1], self.crystal.loc[2] - s.loc[2]], [0, 0, 1])
-            cbeta = la.cos([self.crystal.loc[0] - s.loc[0], 0, self.crystal.loc[2] - s.loc[2]], [0, 0, 1])
-            s.solid_angle = (m.pi * self.crystal.D ** 2 / 4 * calpha * cbeta) / (
-                4 * m.pi * la.norm(self.crystal.loc) ** 2)
-            # print('Bragg angle: {:.4f}°'.format(tl.deg_from_rad(self.bragg)))
-            # print('Bragg angle: {:.4f}°'.format(self.bragg[0]))
+            alpha = la.cos([0, self.crystal.loc[1] - s.loc[1], self.crystal.loc[2] - s.loc[2]], [0, 0, 1])
+            beta = la.cos([self.crystal.loc[0] - s.loc[0], 0, self.crystal.loc[2] - s.loc[2]], [0, 0, 1])
+
+            # s.solid_angle = (m.pi * self.crystal.D ** 2 / 4 * alpha * beta) / (
+            #     4 * m.pi * la.norm(la.minus(crystal.loc, s.loc)) ** 2)
+            s.solid_angle = (m.pi * self.crystal.D ** 2 / 4 * alpha * beta) / (
+                la.norm(la.minus(crystal.loc, s.loc)) ** 2)
+
+    def shine_random(self, source: Source):
+        for i in range(source.number):
+            done = False
+
+            while not done:
+                s = la.plus(
+                    la.minus(self.crystal.loc, source.loc),
+                    [self.crystal.D * (0.5 - random.random()) for j in range(2)] + [0]
+                )
+                done = self.reflection_crystal(la.normalize(s), source)
+
+        # source.intensity_per_photon = source.intensity * (source.solid_angle / (4 * m.pi)) / source.number
+        source.intensity_per_photon = source.intensity * (source.solid_angle / (4 * m.pi)) / source.photons_total
+        print(source.intensity_per_photon)
 
     def reflection_crystal(self, s, source):
         cp_loc = la.x(s, tl.qroot(
             a=1,
-            b=-2 * la.dot(s, la.minus(self.crystal.loc_centre, source.loc)),
-            c=la.norm(self.crystal.loc_centre) ** 2 + la.norm(source.loc) ** 2 - 2 * la.dot(
-                self.crystal.loc_centre, source.loc) - self.crystal.r ** 2
+            b=-2 * la.dot(s, la.minus(self.crystal.centre, source.loc)),
+            c=la.norm(self.crystal.centre) ** 2 + la.norm(source.loc) ** 2 - 2 * la.dot(
+                self.crystal.centre, source.loc) - self.crystal.r ** 2
         ))
         cp_loc = la.plus(cp_loc, source.loc)
 
         if la.norm(la.minus(cp_loc, self.crystal.loc)[:2]) < self.crystal.D / 2:
-            normal = la.i(la.normalize(la.minus(cp_loc, self.crystal.loc_centre)))
+            normal = la.normalize(la.minus(self.crystal.centre, cp_loc))
             source.photons_total += 1
 
             if not self.reflection_point(cp_loc, normal, s):
@@ -136,9 +149,9 @@ class SetUp:
         out_intensity = self.curveSi.curve(m.pi / 2 - m.acos(la.cos(ray, la.i(n))))
 
         if out_intensity != 0:
-            self.crystal.points.append((loc))
-            self.crystal.count_reflected += 1
-            o = [out_intensity * (-ray[i] + 2 * (n[i] + ray[i])) for i in range(3)]
+            self.crystal.points.append(loc)
+            ray = la.x(ray, 1 / la.dot(ray, n))
+            o = [+ray[i] + 2 * (n[i] - ray[i]) for i in range(3)]
             r = np.array(la.minus(self.detector.loc, loc))
 
             coeff = np.linalg.solve(np.array([la.normalize(o),
@@ -149,20 +162,20 @@ class SetUp:
             j = int(coeff[2] // self.detector.res + self.detector.ny / 2)
 
             if 0 <= i < self.detector.nx and 0 <= j < self.detector.ny:
-                self.detector.detected_intensity.append(la.norm(o))
+                self.detector.detected_intensity.append(out_intensity)
                 self.detector.detected_position.append([i, j])
             return True
         return False
 
     def pre_shine(self, source: Source):
         angles = [
-            la.cos(la.plus([self.crystal.D / 2, 0, self.crystal.r], la.minus(self.crystal.loc_centre, source.loc)),
+            la.cos(la.plus([self.crystal.D / 2, 0, self.crystal.r], la.minus(self.crystal.centre, source.loc)),
                    [self.crystal.D / 2, 0, self.crystal.r]),
-            la.cos(la.plus([-self.crystal.D / 2, 0, self.crystal.r], la.minus(self.crystal.loc_centre, source.loc)),
+            la.cos(la.plus([-self.crystal.D / 2, 0, self.crystal.r], la.minus(self.crystal.centre, source.loc)),
                    [-self.crystal.D / 2, 0, self.crystal.r]),
-            la.cos(la.plus([0, self.crystal.D / 2, self.crystal.r], la.minus(self.crystal.loc_centre, source.loc)),
+            la.cos(la.plus([0, self.crystal.D / 2, self.crystal.r], la.minus(self.crystal.centre, source.loc)),
                    [0, self.crystal.D / 2, self.crystal.r]),
-            la.cos(la.plus([0, -self.crystal.D / 2, self.crystal.r], la.minus(self.crystal.loc_centre, source.loc)),
+            la.cos(la.plus([0, -self.crystal.D / 2, self.crystal.r], la.minus(self.crystal.centre, source.loc)),
                    [0, -self.crystal.D / 2, self.crystal.r])
         ]
 
@@ -173,22 +186,6 @@ class SetUp:
         if angles[2] < self.curveSi.bragg < angles[3] or angles[2] > self.curveSi.bragg > angles[3]:
             return True
         return False
-
-    def shine_random(self, source: Source):
-        for i in range(source.number):
-            done = False
-            while not done:
-                s = la.plus(
-                    la.minus(self.crystal.loc, source.loc),
-                    [self.crystal.D * (0.5 - random.random()) for j in range(2)] + [0]
-                )
-                # rough condition for a generated ray
-                if la.cos(self.direction, s) < m.cos(source.max_angle):
-                    continue
-
-                done = self.reflection_crystal(la.normalize(s), source)
-
-        source.intensity_per_photon = source.intensity * (source.solid_angle / (4 * m.pi)) / source.number
 
     def shine_matrix(self, source: Source):
         # angles = list()
@@ -292,10 +289,9 @@ Photons reflected {}
 
     def statistics(self):
         print('--------------------\nStatisitcs')
-        print('Intensity on detector: {}'.format(self.detector.integral))
-        print('Photon fraction on detector: {}'.format(
-            self.detector.integral / sum([s.intensity for s in self.source])
-        ))
+        integral = self.detector.integral
+        print('Intensity on detector: {}'.format(integral))
+        print('Photon fraction on detector: {}'.format(integral / sum([s.intensity for s in self.source])))
 
     def work(self):
         t = time.time()
@@ -305,13 +301,12 @@ Photons reflected {}
                 print('{}/{}, {}s'.format(self.source.index(s), len(self.source),
                                           int((time.time() - t) * (len(self.source) / self.source.index(s) - 1))))
             if not self.pre_shine(s):
+                print('no')
                 continue
             self.shine_random(s)
-            # self.shine_matrix(s)
             self.mesh_to_image(s)
 
         print('Elapsed time: {}s'.format(time.time() - t))
-        # print('All photons to crystal: {}'.format(s.total))
 
         self.graph()
         self.statistics()
