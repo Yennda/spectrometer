@@ -92,4 +92,15 @@ print('FILE')
 print(timeit.timeit('curveSi.curve(1.383)', setup='from curves import Curves;curveSi = Curves("reflectivity.csv")',
                     number=10000))
 
+print('------------------------')
+print('solve x matrix')
+print('matrix')
+print(timeit.timeit('np.matrix([[2,4,1],[2,5,1],[0,4,5]]).I*np.matrix([1,2,3]).T',
+                    setup='import numpy as np; ', number=10000))
+print('solve np.array')
+print(timeit.timeit('np.linalg.solve(np.array([[2,4,1],[2,5,1],[0,4,5]]),np.array([1,2,3]))', setup='import numpy as np',
+                    number=10000))
+print('solve list')
+print(timeit.timeit('np.linalg.solve([[2,4,1],[2,5,1],[0,4,5]],[1,2,3])', setup='import numpy as np',
+                    number=10000))
 print('########################')
