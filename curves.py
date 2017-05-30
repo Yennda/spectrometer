@@ -17,7 +17,7 @@ class Curves:
     def list_from_csv(self, file):
         file = open(file, 'r')
         data = file.read()
-        dlist = [d.split('  ') for d in data.split('\n')]
+        dlist = [d.split(';') for d in data.split('\n')]
         final = [[float(i) for i in d] for d in dlist]
 
         return final

@@ -99,3 +99,20 @@ class Tools:
             sum_first += x[i][0] * x[i + 1][1]
             sum_second += x[i + 1][0] * x[i][1]
         return 0.5 * (sum_first + x[-1][0] * x[0][1] - sum_second - x[0][0] * x[-1][1])
+
+    @staticmethod
+    def solid_angle(D, l, tb):
+        def z(g):
+            return (l + m.cos(tb) * D / 2) * m.tan(tb) / (m.tan(tb) - m.tan(g))
+
+        g1 = m.atan(m.sin(tb) * D / (2 * l))
+        g2 = m.atan(m.sin(tb) * D / (2 * (l + m.cos(tb) * D)))
+
+        integral = 0
+        n = 10000
+
+        for i in range(n):
+            d = (g1 + g2) / n
+            g = g1 - d * i
+            integral += m.tan(d) * 2 * m.atan(D / 2 / z(g))
+        return integral
