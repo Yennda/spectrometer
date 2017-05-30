@@ -53,12 +53,6 @@ class Detector:
         self.uy = tl.rotate(self.uy, angles)
 
 
-# class DetectorPoint:
-#     def __init__(self, loc):
-#         self.loc = loc
-#         self.intensity = 0
-
-
 class Source:
     def __init__(self, loc: list, wavelength: float, intensity: int, number):
         self.loc = loc
@@ -78,6 +72,9 @@ class Source:
         self.direction = float()
         self.solid_angle = float()
 
+    def reset(self):
+        self.__init__(self.loc, self.wl, self.intensity, self.number)
+
 
 class Crystal:
     def __init__(self, d, D, r, loc):
@@ -95,6 +92,8 @@ class Crystal:
 
 class SetUp:
     def __init__(self, source, crystal: Crystal, detector: Detector):
+        for s in source:
+            s.reset()
         self.source = source
         self.crystal = crystal
         self.detector = detector
@@ -106,8 +105,6 @@ class SetUp:
             alpha = la.cos([0, self.crystal.loc[1] - s.loc[1], self.crystal.loc[2] - s.loc[2]], [0, 0, 1])
             beta = la.cos([self.crystal.loc[0] - s.loc[0], 0, self.crystal.loc[2] - s.loc[2]], [0, 0, 1])
 
-            # s.solid_angle = (m.pi * self.crystal.D ** 2 / 4 * alpha * beta) / (
-            #     4 * m.pi * la.norm(la.minus(crystal.loc, s.loc)) ** 2)
             s.solid_angle = (m.pi * self.crystal.D ** 2 / 4 * alpha * beta) / (
                 la.norm(la.minus(crystal.loc, s.loc)) ** 2)
 
@@ -122,9 +119,8 @@ class SetUp:
                 )
                 done = self.reflection_crystal(la.normalize(s), source)
 
-        # source.intensity_per_photon = source.intensity * (source.solid_angle / (4 * m.pi)) / source.number
         source.intensity_per_photon = source.intensity * (source.solid_angle / (4 * m.pi)) / source.photons_total
-        print(source.intensity_per_photon)
+        # print('ipp {}'.format(source.intensity_per_photon))
 
     def reflection_crystal(self, s, source):
         cp_loc = la.x(s, tl.qroot(
@@ -221,7 +217,7 @@ class SetUp:
         source.intensity_per_photon = source.intensity * source.solid_angle * source.number / (
             4 * m.pi * source.photons_total * source.number)
 
-    def mesh_to_image(self, source):
+    def mesh_to_image(self, source: Source):
         pos = self.detector.detected_position
         inte = self.detector.detected_intensity
         for i in range(len(inte)):

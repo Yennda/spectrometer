@@ -1,7 +1,7 @@
 from algebra import la
-import numpy as np
 import numpy.linalg as l
 import math as m
+from scipy import constants as c
 
 
 class Tools:
@@ -16,6 +16,14 @@ class Tools:
     @staticmethod
     def rad_from_deg(x):
         return x / 180 * m.pi
+
+    @staticmethod
+    def ang_from_kev(e):
+        return c.c / (e * 1e3 * c.eV / c.h) * 1e10
+
+    @staticmethod
+    def kev_from_ang(l):
+        return c.c * c.h / c.e / (l * 1e-10) / 1e3
 
     @staticmethod
     def mol(x, y, e):
@@ -87,7 +95,7 @@ class Tools:
     def shoelace(x: list):
         sum_first = 0
         sum_second = 0
-        for i in range(len(x)-1):
+        for i in range(len(x) - 1):
             sum_first += x[i][0] * x[i + 1][1]
             sum_second += x[i + 1][0] * x[i][1]
         return 0.5 * (sum_first + x[-1][0] * x[0][1] - sum_second - x[0][0] * x[-1][1])
