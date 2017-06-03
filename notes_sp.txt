@@ -1,0 +1,13 @@
+
+50
+Elapsed time: 1881.3614819049835s
+--------------------
+Statisitcs
+Intensity on detector: 0.00044597953028981444
+Photon fraction on detector: 4.4597953028981446e-07
+count 13853345
+
+phi without 0.5
+65.12516903877258s
+phi proper
+Elapsed time: 3.237959861755371s

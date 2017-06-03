@@ -13,18 +13,20 @@ import timeit
 
 t = time.time()
 
-c = Crystal(d=0.384031, D=[3,3], l=5, tb=tl.rad_from_deg(-3.4858))
-s = Source(loc=[0, 0, 0], wavelength=0.377207, intensity=1000, number=100)
-d = Detector(dim=[30, 30], loc=[0,8.12, 75.509], res=50)
-d.rotate([0,tl.rad_from_deg(2*3.4858),0])
+print(st.distances(D=3, d=2.4, l=5, tb=tl.rad_from_deg(3.4858)))
 
-# st.display_source(s)
+c = Crystal(d=9.406767935906574, D=[3, 3], l=5, tb=tl.rad_from_deg(3.4858), rc=1)
+s = Source(loc=[0, 0, 0], wavelength=[1.143892288781112, 1.1491118777811125], intensity=1000, number=10000)
+d = Detector(dim=[2.4, 2.4], loc=st.distances(D=3, d=2.4, l=5, tb=tl.rad_from_deg(3.4858)), res=75)
+d.rotate([tl.rad_from_deg(2 * 3.4858), 0, 0])
+
 setup = SetUp(source=s, crystal=c, detector=d)
 setup.work()
 
+print('count {}'.format(s.photons_total))
 
-x0 = [p[0] for p in c.points]
-y0 = [p[1] for p in c.points]
+x0 = [p[1] for p in c.points]
+y0 = [p[2] for p in c.points]
 
 fig = plt.figure(figsize=(6, 6))
 ax = fig.add_axes([0.2, 0.2, 0.7, 0.7])
@@ -34,5 +36,4 @@ ax.scatter(x0, y0, linewidth=1, color='green')
 ax.grid(True)
 fig.savefig('display/graph_sp_crystal.png', dpi=200, bbox_inches='tight')
 
-# adjustment(c, z_dist=30, oq=51.92)
 print('Final elapsed time: {}s'.format(int(time.time() - t)))

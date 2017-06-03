@@ -126,7 +126,7 @@ class SetupTools:
         print('Detector_m: {}'.format(loc_det_m))
         print('Detector_s: {}'.format(loc_det_s))
         print('Detector_o: {}'.format(loc_det_o))
-        print('Detector_average: {}'.format(la.x(la.plus(loc_det_m,loc_det_s), 0.5)))
+        print('Detector_average: {}'.format(la.x(la.plus(loc_det_m, loc_det_s), 0.5)))
 
     @staticmethod
     def generate_eliptical_source(dim: list, n: int):
@@ -148,3 +148,20 @@ class SetupTools:
                 s.append(
                     Source(loc=[i / n * dim[0], j / n * dim[1], 0], wavelength=0.377207, intensity=1000, number=200))
         return s
+
+    @staticmethod
+    def distances(D, d, l, tb):
+        g1 = m.atan(m.sin(tb) * D / (2 * l))
+        g2 = m.atan(m.sin(tb) * D / (2 * (l + m.cos(tb) * D)))
+
+        tb1 = tb + g1
+        tb2 = tb - g2
+
+        AA = (m.cos(2 * tb) * d + m.sin(tb) * D / 2) / m.tan(tb1 + tb) + m.sin(tb) * D / 2 / m.tan(tb2 + tb) - m.cos(
+            tb) * D + m.sin(2 * tb) * d
+        BB = 1 / m.tan(tb2 + tb) - 1 / m.tan(tb1 + tb)
+
+        h = AA / BB
+        d = (h - m.sin(tb) * D / 2) / m.tan(tb2 + tb) + m.cos(tb) * D
+        return [0, h, l + d]
+

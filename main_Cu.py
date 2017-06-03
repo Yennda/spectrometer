@@ -9,7 +9,7 @@ import time
 
 t = time.time()
 
-c = Crystal(d=1.5414, D=2.4, r=38, loc=[5.627693772801094, 0, 29.46742375572686])
+c = Crystal(d=1.5414, D=2.4, r=38, loc=[5.627693772801094, 0, 29.46742375572686], rc=2)
 s = Source(loc=[0, 0, 0], wavelength=tl.ang_from_kev(8.0478), intensity=1000, number=10000)
 d = Detector(dim=[1, 1], loc=[15.367229373029803, 0.0, -21.530202323895065], res=5)
 print(c.d)
