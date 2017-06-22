@@ -41,7 +41,7 @@ class Curves:
 class Polycurve:
     @staticmethod
     def lorentz(x, o, gamma):
-        return 1 / m.pi * (0.5 * gamma) / ((x - o) ** 2 + (0.5 * gamma) ** 2)/(2/gamma)
+        return 1 / m.pi * (0.5 * gamma) / ((x - o) ** 2 + (0.5 * gamma) ** 2) / (2 / gamma)
 
     @staticmethod
     def fwhm(theta):
@@ -52,6 +52,6 @@ class Polycurve:
         # print(tl.deg_from_rad(theta))
         # print(tl.deg_from_rad(x))
         fwhm = Polycurve.fwhm(theta)
-        if m.fabs(x-theta)>5*fwhm:
+        if m.fabs(x - theta) > 5 * fwhm:
             return 0
         return Polycurve.lorentz(x, theta, fwhm)

@@ -13,12 +13,13 @@ import timeit
 
 t = time.time()
 
-print(st.distances(D=3, d=2.4, l=5, tb=tl.rad_from_deg(3.4858)))
-
-c = Crystal(d=9.406767935906574, D=[3, 3], l=5, tb=tl.rad_from_deg(3.4858), rc=1)
-s = Source(loc=[0, 0, 0], wavelength=[1.143892288781112, 1.1491118777811125], intensity=1000, number=10000)
-d = Detector(dim=[2.4, 2.4], loc=st.distances(D=3, d=2.4, l=5, tb=tl.rad_from_deg(3.4858)), res=75)
+c = Crystal(d=9.406767935906574, D=[3, 3], l=7, tb=tl.rad_from_deg(3.4858), rc=1)
+s = Source(loc=[0, 0, 0], wavelength=[1.143892288781112], intensity=1e9, number=1000)
+d = Detector(dim=[0.08, 2.4], loc=st.distances(D=3, d=2.4, l=7, tb=tl.rad_from_deg(3.4858)), res=800)
 d.rotate([tl.rad_from_deg(2 * 3.4858), 0, 0])
+
+
+print(st.distances(D=3, d=2.4, l=7, tb=tl.rad_from_deg(3.4858)))
 
 setup = SetUp(source=s, crystal=c, detector=d)
 setup.work()
@@ -37,3 +38,4 @@ ax.grid(True)
 fig.savefig('display/graph_sp_crystal.png', dpi=200, bbox_inches='tight')
 
 print('Final elapsed time: {}s'.format(int(time.time() - t)))
+3.148781422795631e-09

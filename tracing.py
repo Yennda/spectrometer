@@ -100,7 +100,7 @@ class SetUp:
 
     @property
     def leng(self):
-        a, h, d = tl.distances(self.crystal.D[1], self.detector.dim[0], self.crystal.l, self.crystal.tb)
+        a, h, d = tl.distances(self.crystal.D[1], self.detector.dim[1], self.crystal.l, self.crystal.tb)
         d -= self.crystal.l
         leng = ((d - m.cos(self.crystal.tb) * self.crystal.D[0] / 2 - m.sin(2 * self.crystal.tb) *
                  self.detector.dim[0] / 2) ** 2 + (
@@ -122,7 +122,6 @@ class SetUp:
                 s = [j, i, 1]
 
                 self.reflection_crystal(la.normalize(s))
-
         self.source.intensity_per_photon = self.source.intensity * (
             tl.solid_angle(self.crystal.D[0], self.crystal.l, self.crystal.tb) / (4 * m.pi)) / self.source.photons_total
 
@@ -142,7 +141,9 @@ class SetUp:
                 s = [phi * (random.random() - 0.5), random.random() * (g1 + g2) - g2, 1]
                 done = self.reflection_crystal(la.normalize(s))
 
-        solid_angle = (m.cos(m.pi / 2 - g1) - m.cos(m.pi / 2 + g2)) * 2 * phi
+        # solid_angle = (m.cos(m.pi / 2 - g1) - m.cos(m.pi / 2 + g2)) * 2 * phi
+        solid_angle = (m.fabs(g1) + m.fabs(g2)) * 2 * phi
+        # print('sa: {}'.format(solid_angle))
         self.source.intensity_per_photon = self.source.intensity * (
             solid_angle / (4 * m.pi) / self.source.photons_total)
 
